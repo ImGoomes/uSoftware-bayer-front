@@ -41,29 +41,48 @@ export default class SignIn extends React.Component{
             password:props.target.value
         }, ()=>console.log(`password: ${this.state.password}`))
 
-    signIn = async props => {
+    checkForm = _ => {
+        if(this.state.email === '')
+            throw new Error('Email é um campo obrigatório')
+        else if(this.state.password === '')
+            throw new Error('Senha é um campo obrigatório')
+        
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(String(this.state.email).toLowerCase()))
+            throw new Error('O e-mail fornecido não é válido')
+    }
+
+    signIn = async _ => {
         try {
+            //Verificação do formulário
+            this.checkForm()
+
             const signIn = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/signin`, {...this.state})
             alert('Credenciais corretas. Seja bem-vindo')
+
             localStorage.setItem('signin', JSON.stringify({token: signIn.data}))
-            this.props.history.push('/signup')//Refactor
+            this.props.history.push('/signup')//Alterar URL
 
         } catch (error) {
             console.log(error)
             localStorage.removeItem('signin')
-            const errorMessage = error.response.data.message
 
+            //Se não é um erro de rede | Banco de dados ou back-end
+            if(error.response === undefined){
+                alert(error.message)
+                return
+            }
+
+            //Se é um erro da banco de dados ou back-end
             switch(error.response.status){
                 case 404:
                     alert('e-mail ou senha incorretos')
-                    console.error(errorMessage)
                     break;
                 case 500:
                     alert('ocorreu um erro de resposabilidade do servidor')
-                    console.error(errorMessage)
                     break;
                 default:
-                    //refactor
+                    alert(error.message)
                     break;
             }
         }
