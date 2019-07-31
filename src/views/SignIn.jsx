@@ -60,7 +60,7 @@ export default class SignIn extends React.Component{
             const signIn = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/signin`, {...this.state})
             alert('Credenciais corretas. Seja bem-vindo')
 
-            localStorage.setItem('signin', JSON.stringify({token: signIn.data}))
+            localStorage.setItem('signinData', JSON.stringify(signIn.data))
             this.props.history.push('/signup')//Alterar URL
 
         } catch (error) {
