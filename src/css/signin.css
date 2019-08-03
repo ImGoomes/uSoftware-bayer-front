@@ -9,10 +9,17 @@ body {
 
 .box {
     border: 1px solid #D6D6D6 !important;
-    margin: 0px 70px 0px 70px;
     padding: 30px 20px 30px 20px;
     border-radius: 5px;
     background-color: #fff;
+}
+
+.width-signin {
+    width: 350px;
+}
+
+.width-signup {
+    width: 500px;
 }
 
 .nome-projeto {
