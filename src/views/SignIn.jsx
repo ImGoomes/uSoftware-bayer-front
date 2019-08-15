@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import './../css/signin.css'
 
 
 export default class SignIn extends React.Component{
@@ -14,13 +15,22 @@ export default class SignIn extends React.Component{
 
     render(){
         return (
-            <div>
-                <form>
-                    <input type="text" id="email" placeholder="e-mail" value={this.state.email} onChange={this.setEmail}/>
-                    <input type="password" id="password" placeholder="password" value={this.state.password} onChange={this.setPassword}/>
-                    <button type="button" onClick={this.signIn}>Entrar</button>
-                    <Link to="/signup">Registrar</Link>
-                </form>
+            <div className="container d-flex justify-content-center mt-5">
+                <div className="box width-signin">
+                    <div className="brand">
+                        <i className="pe-7s-portfolio"></i>
+                        <span className="nome-projeto text-danger">u.Job</span>
+                    </div>
+                    <form className="form">
+                        <label className="control-label">E-mail</label>
+                        <input type="text" className="form-control mb-2" id="email" placeholder="e-mail" value={this.state.email} onChange={this.setEmail}/>
+                        <label className="control-label">Password</label>
+                        <input type="password" className="form-control mb-2" id="password" placeholder="password" value={this.state.password} onChange={this.setPassword}/>
+                        <hr />
+                        <button type="button" className="btn btn-blue btn-block" onClick={this.signIn}>Entrar</button>
+                        <Link className="btn btn-blue btn-block" to="/signup">Registrar</Link>
+                    </form>
+                </div>
             </div>
         )
     }
