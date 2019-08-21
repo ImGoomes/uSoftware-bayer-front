@@ -21,10 +21,10 @@ const renderPrivateComponent = _ => {
             case 'user':
                 return MainCandidate
             default:
-                return SignIn
+                return MainRecruiter //testes dev
             }
         } catch (error) {
-            return SignIn            
+            return MainRecruiter
     }
 }
 
