@@ -8,8 +8,6 @@ import {Router, Switch, Route} from 'react-router-dom'
 import {createBrowserHistory} from 'history'
 import 'bootstrap/dist/css/bootstrap.css';
 
-
-
 import dotenv from 'dotenv'
 dotenv.config()
 
