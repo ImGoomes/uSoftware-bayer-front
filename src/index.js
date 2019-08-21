@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import SignIn from './views/SignIn';
+import SignUp from './views/SignUp';
+import {Router, Switch, Route} from 'react-router-dom'
+import {createBrowserHistory} from 'history'
+import 'bootstrap/dist/css/bootstrap.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+import dotenv from 'dotenv'
+dotenv.config()
+
+ReactDOM.render(<Router history={createBrowserHistory()}>
+                    <Switch>
+                        <Route path="/" component={SignIn} exact={true}/>
+                        <Route path="/signin" component={SignIn} exact={true}/>
+                        <Route path="/signup" component={SignUp} exact={true}/>
+                    </Switch>
+                </Router>, document.getElementById('root'));
