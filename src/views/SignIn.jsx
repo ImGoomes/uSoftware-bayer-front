@@ -31,6 +31,13 @@ const styles = theme => ({
     },
     brandIcon: {
         fontSize: '12px'
+    },
+    button: {
+        width: '100%',
+        marginTop: '5px',
+        '&:hover': {
+            color: "#fff",
+        }
     }
 });
 
@@ -76,7 +83,7 @@ class SignIn extends React.Component{
                                 <hr />
                                 <Grid container direction="row" justify="space-around" alignItems="center">
                                     <Button size="large" variant="contained" color="primary" className="btn-block" onClick={this.signIn}>Entrar</Button>
-                                    <Button size="large" variant="contained" color="primary" className="btn-block" component={Link} to="/signup">Registrar</Button>
+                                    <Button size="large" variant="contained" color="primary" className={classes.button} component={Link} to="/signup">Registrar</Button>
                                 </Grid>
                             </form>
                         </Card>

@@ -31,10 +31,21 @@ const styles = theme => ({
     },
     textField: {
         width: '100%',
-
+        marginTop: '5px',
+        marginBottom: '5px',
+        '&:last-of-type': {
+            marginBottom: '10px'
+        }
     },
     brandIcon: {
         fontSize: '12px'
+    },
+    button: {
+        width: '100%',
+        marginTop: '5px',
+        '&:hover': {
+            color: "#fff",
+        }
     }
 });
 
@@ -64,11 +75,11 @@ class SignUp extends React.Component{
                         <form className="form">
                             <h2 className={classes.titleHeader}>Registre-se</h2>
                             <TextField id="name" label="Nome" className={classes.textField} value={this.state.name}
-                                onChange={this.setName} margin="normal" variant="outlined" />
+                                onChange={this.setName}  variant="outlined" />
                             <TextField id="lastName" label="Sobrenome" className={classes.textField} value={this.state.lastName}
-                                       onChange={this.setLastName} margin="normal" variant="outlined" />
-                            <TextField id="age" label="Idade" className={classes.textField} value={this.state.age} type="number"
-                                       onChange={this.setAge} margin="normal" variant="outlined" />
+                                       onChange={this.setLastName}  variant="outlined" />
+                            <TextField id="date" label="Birthday" type="date" value={this.state.age}
+                                className={classes.textField} onChange={this.setAge} variant="outlined" />
 
                             <InputMask
                                 mask="(99) 99999-9999"
@@ -80,14 +91,14 @@ class SignUp extends React.Component{
                                     variant="outlined" className={classes.textField} label="Celular"/>}
                             </InputMask>
                             <TextField id="email" label="E-mail" type="email" className={classes.textField} value={this.state.email}
-                                       onChange={this.setEmail} margin="normal" variant="outlined" />
+                                       onChange={this.setEmail}  variant="outlined" />
                             <TextField id="password" label="Senha" type="password" className={classes.textField} value={this.state.password}
-                                       onChange={this.setPassword} margin="normal" variant="outlined" />
+                                       onChange={this.setPassword}  variant="outlined" />
                             <TextField id="passwordConfirmation" label="Confirmação de Senha" type="password" className={classes.textField} value={this.state.passwordConfirmation}
-                                       onChange={this.setPasswordConfirmation} margin="normal" variant="outlined" />
+                                       onChange={this.setPasswordConfirmation}  variant="outlined" />
 
                             <Button variant="contained" color="primary" type="button" className="btn-block" onClick={this.signUp}>Registrar</Button>
-                            <Button variant="contained" color="primary" component={Link} className="btn-block" to="/signin">Entrar</Button>
+                            <Button variant="contained" color="primary" component={Link} className={classes.button} to="/signin">Entrar</Button>
                         </form>
                     </Card>
                 </Container>}
