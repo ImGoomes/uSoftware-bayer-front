@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function MiniDrawer() {
+export default function LateralMenu() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
