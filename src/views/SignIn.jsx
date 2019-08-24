@@ -15,8 +15,8 @@ export default class SignIn extends React.Component{
 
     render(){
         return (
-            <div className="container d-flex justify-content-center mt-5">
-                <div className="box width-signin">
+            <div className="container mt-5">
+                <div className="box">
                     <div className="brand">
                         <i className="pe-7s-portfolio"></i>
                         <span className="nome-projeto text-danger">u.Job</span>
