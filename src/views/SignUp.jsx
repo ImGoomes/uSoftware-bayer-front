@@ -2,43 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import InputMask from 'react-input-mask'
-import PropTypes from 'prop-types'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { withStyles } from '@material-ui/styles'
-import {Box, Container, Grid, Button, Card, TextField} from "@material-ui/core"
+import './../css/signin.css'
 
-const styles = theme => ({
-    titleHeader: {
-      fontFamily: 'Roboto',
-    },
-    card: {
-        minWidth: 275,
-        maxWidth: 500,
-        padding: '20px',
-        margin: '0 auto',
-        marginTop: '20px',
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    textField: {
-        width: '100%',
-
-    },
-    brandIcon: {
-        fontSize: '12px'
-    }
-});
-
-class SignUp extends React.Component{
+export default class SignIn extends React.Component{
     constructor(props){
         super(props)
         
@@ -55,43 +21,31 @@ class SignUp extends React.Component{
     }
 
     render(){
-        const { classes } = this.props;
         return(
-            <React.Fragment>
-                <CssBaseline />
-                {<Container max-width="sm">
-                    <Card className={classes.card}>
-                        <form className="form">
-                            <h2 className={classes.titleHeader}>Registre-se</h2>
-                            <TextField id="name" label="Nome" className={classes.textField} value={this.state.name}
-                                onChange={this.setName} margin="normal" variant="outlined" />
-                            <TextField id="lastName" label="Sobrenome" className={classes.textField} value={this.state.lastName}
-                                       onChange={this.setLastName} margin="normal" variant="outlined" />
-                            <TextField id="age" label="Idade" className={classes.textField} value={this.state.age} type="number"
-                                       onChange={this.setAge} margin="normal" variant="outlined" />
-
-                            <InputMask
-                                mask="(99) 99999-9999"
-                                value={this.state.mobilePhone}
-                                onChange={this.setMobilePhone}
-                                className={classes.textField}
-                            >
-                                {() => <TextField
-                                    variant="outlined" className={classes.textField} label="Celular"/>}
-                            </InputMask>
-                            <TextField id="email" label="E-mail" type="email" className={classes.textField} value={this.state.email}
-                                       onChange={this.setEmail} margin="normal" variant="outlined" />
-                            <TextField id="password" label="Senha" type="password" className={classes.textField} value={this.state.password}
-                                       onChange={this.setPassword} margin="normal" variant="outlined" />
-                            <TextField id="passwordConfirmation" label="Confirmação de Senha" type="password" className={classes.textField} value={this.state.passwordConfirmation}
-                                       onChange={this.setPasswordConfirmation} margin="normal" variant="outlined" />
-
-                            <Button variant="contained" color="primary" type="button" className="btn-block" onClick={this.signUp}>Registrar</Button>
-                            <Button variant="contained" color="primary" component={Link} className="btn-block" to="/signin">Entrar</Button>
-                        </form>
-                    </Card>
-                </Container>}
-            </React.Fragment>
+            <div className="container d-flex justify-content-center mt-5">
+                <div className="box width-signup">
+                    <form className="form">
+                        <h2>Registre-se</h2>
+                        <label className="control-label">Nome</label>
+                        <input type="text" className="form-control mb-2" id="name" placeholder="Nome" value={this.state.name} onChange={this.setName}/>
+                        <label className="control-label">Sobrenome</label>
+                        <input type="text" className="form-control mb-2" id="lastName" placeholder="Sobrenome" value={this.state.lastName} onChange={this.setLastName}/>
+                        <label className="control-label">Idade</label>
+                        <input type="number" className="form-control mb-2" id="age" placeholder="Idade" value={this.state.age} onChange={this.setAge}/>
+                        <label className="control-label">Telefone</label>
+                        <InputMask mask="(99) 99999-9999" className="form-control mb-2" maskChar=" " placeholder="Celular" value={this.state.mobilePhone} onChange={this.setMobilePhone}/>                    
+                        <label className="control-label">E-mail</label>
+                        <input type="email"  className="form-control mb-2" id="email" placeholder="E-mail" value={this.state.email} onChange={this.setEmail}/>
+                        <label className="control-label">Senha</label>
+                        <input type="password" className="form-control mb-2" id="password" placeholder="Senha" value={this.state.password} onChange={this.setPassword}/>
+                        <label className="control-label">Confirme a Senha</label>
+                        <input type="password" className="form-control mb-2" id="passwordConfirmation" placeholder="Confirmação de Senha" value={this.state.passwordConfirmation} onChange={this.setPasswordConfirmation}/>
+                        
+                        <button type="button" className="btn btn-blue btn-block" onClick={this.signUp}>Registrar</button>
+                        <Link className="btn btn-blue btn-block" to="/signin">Entrar</Link>
+                    </form>
+                </div>
+            </div>
         )
     }
 
@@ -192,5 +146,3 @@ class SignUp extends React.Component{
     }
 
 }
-
-export default withStyles(styles)(SignUp)
