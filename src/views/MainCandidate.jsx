@@ -1,24 +1,14 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
+import getLocalStorageRole from './../uJob-local-storage'
 
-export default class MainCandidate extends React.Component{
-    constructor(props){
-        super(props)
-        
-    }
+const validateCandidate = (props) => {
+    if (getLocalStorageRole() !== 'user')
+        props.history.push('/signin')
+}
 
-    render(){
-        return (
-            "MainCandidate"
-        )
-    }
+export default function MainCandidate(props) {
+    validateCandidate(props)
 
-    componentDidMount(){
-
-    }
-
-    componentWillUnmount(){
-
-    }
+    return 'maincandidate'
 }

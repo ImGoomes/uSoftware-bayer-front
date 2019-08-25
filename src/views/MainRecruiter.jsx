@@ -1,14 +1,14 @@
 import React from 'react'
-import LateralMenu from '../components/lateral-menu'
-import PageHeader from '../components/page-header'
 
-export default function(){
+import getLocalStorageRole from './../uJob-local-storage'
 
-  return (
-      <div>
-        <PageHeader />
-        <LateralMenu />
-      </div>
-  )
+const validateCandidate = (props) => {
+    if (getLocalStorageRole() !== 'recruiter')
+        props.history.push('/signin')
+}
 
+export default function MainRecruiter(props){
+    validateCandidate(props)
+
+    return 'mainrecruiter'
 }
