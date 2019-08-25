@@ -1,7 +1,7 @@
 import React from 'react'
 import { LateralMenu, LateralMenuButton } from './../components/lateral-menu'
 
-import getLocalStorageRole from './../uJob-local-storage'
+import {getLocalStorageRole} from './../uJob-local-storage'
 
 const validateCandidate = (props) => {
     if (getLocalStorageRole() !== 'user')

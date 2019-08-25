@@ -1,6 +1,6 @@
 import React from 'react'
 
-import getLocalStorageRole from './../uJob-local-storage'
+import {getLocalStorageRole} from './../uJob-local-storage'
 import {LateralMenu, LateralMenuButton} from "../components/lateral-menu";
 
 const validateCandidate = (props) => {
