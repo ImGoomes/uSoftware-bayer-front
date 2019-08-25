@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import InputMask from 'react-input-mask'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 
 import './../css/sign-up.css'
 
@@ -63,7 +63,7 @@ export default function SignUp(props) {
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
     return (
-        <Container>
+        <Grid>
             <Row className="justify-content-center">
                 <Col md="auto">
                     <div className="box width-signup">
@@ -106,6 +106,6 @@ export default function SignUp(props) {
                     </div>
                 </Col>
             </Row>
-        </Container>
+        </Grid>
     )
 }

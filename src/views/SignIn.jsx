@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 
 import {setLocalStorage, removeLocalStorage} from './../uJob-local-storage'
 import './../css/sign-in.css'
@@ -45,9 +45,6 @@ const signIn = async function (props) {
         }
     }
 }
-<<<<<<< HEAD
-=======
-
 const checkForm = (props) => {
     if (props.email === '')
         throw new Error('Email é um campo obrigatório')
@@ -64,7 +61,7 @@ export default function SignIn(props) {
     const [password, setPassword] = useState('')
 
     return (
-        <Container>
+        <Grid>
             <Row className="justify-content-center">
                 <Col md="auto">
                     <div className="box width-signin">
@@ -92,7 +89,6 @@ export default function SignIn(props) {
                     </div>
                 </Col>
             </Row>
-        </Container>
+        </Grid>
     )
 }
->>>>>>> voltaBootstrap
