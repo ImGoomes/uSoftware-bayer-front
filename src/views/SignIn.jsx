@@ -1,47 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import PropTypes from 'prop-types'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { withStyles } from '@material-ui/styles'
-import {Box, Container, Grid, Button, Card, TextField} from "@material-ui/core"
+import './../css/signin.css'
 
-const styles = theme => ({
-    card: {
-        minWidth: 275,
-        maxWidth: 350,
-        padding: '20px',
-        margin: '0 auto',
-        marginTop: '100px',
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    textField: {
-        width: '100%',
 
-    },
-    brandIcon: {
-        fontSize: '12px'
-    },
-    button: {
-        width: '100%',
-        marginTop: '5px',
-        '&:hover': {
-            color: "#fff",
-        }
-    }
-});
-
-class SignIn extends React.Component{
+export default class SignIn extends React.Component{
     constructor(props){
         super(props)
         this.state = {
@@ -51,44 +14,24 @@ class SignIn extends React.Component{
     }
 
     render(){
-        const { classes } = this.props;
         return (
-            <React.Fragment>
-                <CssBaseline />
-                {<Container max-width="sm">
-                        <Card className={classes.card}>
-                            <i className="pe-7s-portfolio" style={{fontSize: '32px'}}></i>
-                            <span className="nome-projeto text-danger">u.Job</span>
-
-                            <form className="form">
-                                <TextField
-                                    id="email"
-                                    label="Email"
-                                    className={classes.textField}
-                                    value={this.state.email}
-                                    onChange={this.setEmail}
-                                    margin="normal"
-                                    variant="outlined"
-                                />
-                                <TextField
-                                    id="password"
-                                    label="Senha"
-                                    className={classes.textField}
-                                    value={this.state.password}
-                                    onChange={this.setPassword}
-                                    margin="normal"
-                                    variant="outlined"
-                                    type="password"
-                                />
-                                <hr />
-                                <Grid container direction="row" justify="space-around" alignItems="center">
-                                    <Button size="large" variant="contained" color="primary" className="btn-block" onClick={this.signIn}>Entrar</Button>
-                                    <Button size="large" variant="contained" color="primary" className={classes.button} component={Link} to="/signup">Registrar</Button>
-                                </Grid>
-                            </form>
-                        </Card>
-                    </Container>}
-            </React.Fragment>
+            <div className="container d-flex justify-content-center mt-5">
+                <div className="box width-signin">
+                    <div className="brand">
+                        <i className="pe-7s-portfolio"></i>
+                        <span className="nome-projeto text-danger">u.Job</span>
+                    </div>
+                    <form className="form">
+                        <label className="control-label">E-mail</label>
+                        <input type="text" className="form-control mb-2" id="email" placeholder="e-mail" value={this.state.email} onChange={this.setEmail}/>
+                        <label className="control-label">Password</label>
+                        <input type="password" className="form-control mb-2" id="password" placeholder="password" value={this.state.password} onChange={this.setPassword}/>
+                        <hr />
+                        <button type="button" className="btn btn-blue btn-block" onClick={this.signIn}>Entrar</button>
+                        <Link className="btn btn-blue btn-block" to="/signup">Registrar</Link>
+                    </form>
+                </div>
+            </div>
         )
     }
 
@@ -155,9 +98,3 @@ class SignIn extends React.Component{
         }
     }
 }
-
-SignIn.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SignIn)
