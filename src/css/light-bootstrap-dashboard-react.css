@@ -2564,6 +2564,9 @@ body > .navbar-collapse[data-color="purple"]:after {
 
 /*          Changes for small display      */
 @media (max-width: 991px) {
+  .wrapper-right {
+    width: 100% !important;
+  }
   .main-panel {
     width: 100%; }
   .navbar-transparent {
@@ -2601,7 +2604,7 @@ body > .navbar-collapse[data-color="purple"]:after {
     position: relative;
     display: block; }
   .sidebar {
-    position: fixed;
+    /*position: fixed;*/
     display: block;
     top: 0;
     height: 100%;
@@ -2695,9 +2698,9 @@ body > .navbar-collapse[data-color="purple"]:after {
     border-radius: 1px;
     margin: 0 auto; }
   .navbar-header .navbar-toggle {
-    margin: 10px 15px 10px 0;
-    width: 40px;
-    height: 40px; }
+    margin: 10px 0px 10px 0;
+    height: 40px;
+    position: relative; right: 0px;}
   .bar1,
   .bar2,
   .bar3 {
@@ -2969,6 +2972,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   .navbar-header .collapse, .navbar-toggle {
     display: block !important; }
   .navbar-header {
+    width: 100%;
     float: none; }
   .navbar-nav .open .dropdown-menu {
     position: static;

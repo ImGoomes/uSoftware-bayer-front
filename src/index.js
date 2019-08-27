@@ -1,12 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SignIn from './views/SignIn';
-import SignUp from './views/SignUp';
-import MainRecruiter from './views/MainRecruiter';
-import MainCandidate from './views/MainCandidate';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import SignIn from './views/SignIn'
+import SignUp from './views/SignUp'
+import MainRecruiter from './views/MainRecruiter'
+import MainCandidate from './views/MainCandidate'
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap'
+import 'popper.js/dist/popper'
 
 import dotenv from 'dotenv'
 dotenv.config()

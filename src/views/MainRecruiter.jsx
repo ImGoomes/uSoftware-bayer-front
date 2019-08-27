@@ -22,6 +22,9 @@ export default function MainRecruiter(props){
             <LateralMenuButton icon="pe-7s-config" active={false} href="admin/dashboard">
                 Configurações
             </LateralMenuButton>
+            <LateralMenuButton icon="pe-7s-back" active={false} href="admin/logout">
+                Sair
+            </LateralMenuButton>
         </LateralMenu>
     )
 }
