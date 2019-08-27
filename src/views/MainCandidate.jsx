@@ -1,6 +1,6 @@
 import React from 'react'
 import { LateralMenu, LateralMenuButton } from './../components/lateral-menu'
-import { TopMenu } from './../components/top-menu'
+import { TopMenu, TopMenuItem, TopMenuDropdown } from './../components/top-menu'
 import './../css/dashboard.css'
 import { Grid, Col, Row } from 'react-bootstrap'
 
@@ -12,7 +12,7 @@ const validateCandidate = (props) => {
 }
 
 export default function MainCandidate(props) {
-    //validateCandidate(props)
+    validateCandidate(props)
 
     return (
         <Grid fluid={true}>
@@ -32,7 +32,17 @@ export default function MainCandidate(props) {
                     </LateralMenuButton>
                 </LateralMenu>
                 <div className="wrapper-right">
-                    <TopMenu title="Bem Vindo Candidato!"/>
+                    <TopMenu title="Bem Vindo Candidato!">
+                        <TopMenuDropdown title="Dropdown">
+                            <TopMenuItem href="#">Opção 4</TopMenuItem>
+                            <TopMenuItem href="#">Opção 5</TopMenuItem>
+                            <TopMenuItem href="#">Opção 6</TopMenuItem>
+                            <TopMenuItem href="#">Opção 7</TopMenuItem>
+                        </TopMenuDropdown>
+                        <TopMenuItem href="#">Opção 1</TopMenuItem>
+                        <TopMenuItem href="#">Opção 2</TopMenuItem>
+                        <TopMenuItem href="#">Opção 3</TopMenuItem>
+                    </TopMenu>
                     <div className="content">
                         <p>teste</p>
                     </div>

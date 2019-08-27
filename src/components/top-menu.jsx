@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './../css/light-bootstrap-dashboard-react.css'
 
-function TopMenuDropdown(props) {
+export function TopMenuDropdown(props) {
     const children = props.children
     const [className, setClassName] = useState("dropdown")
     let handleClick = () => {
@@ -27,7 +27,7 @@ function TopMenuDropdown(props) {
     )
 }
 
-function TopMenuItem(props) {
+export function TopMenuItem(props) {
     return (
         <li role="presentation" className={props.className}>
             <a role="menuitem" tabIndex="-1" href={props.href}>
@@ -38,20 +38,17 @@ function TopMenuItem(props) {
 }
 
 export function TopMenu(props) {
-
+    const children = props.children
     const [className, setClassName] = useState("navbar-toggle collapsed")
     let navOpen = ""
     let handleClick = () => {
         if (className === "navbar-toggle collapsed") {
             setClassName("navbar-toggle collapsed in")
-            //document.getElementsByClassName('wrapper-right')[0].style.width = 'calc(100% - 250px)'
             document.querySelector('html').classList.toggle("nav-open")
             navOpen = "nav-open"
         } else {
             setClassName("navbar-toggle collapsed")
-
             document.querySelector('html').classList.toggle("nav-open")
-            navOpen = ""
         }
     };
 
@@ -84,15 +81,9 @@ export function TopMenu(props) {
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <TopMenuDropdown title="Dropdown">
-                                <TopMenuItem href="#">Opção 4</TopMenuItem>
-                                <TopMenuItem href="#">Opção 5</TopMenuItem>
-                                <TopMenuItem href="#">Opção 6</TopMenuItem>
-                                <TopMenuItem href="#">Opção 7</TopMenuItem>
-                            </TopMenuDropdown>
-                            <TopMenuItem href="#">Opção 1</TopMenuItem>
-                            <TopMenuItem href="#">Opção 2</TopMenuItem>
-                            <TopMenuItem href="#">Opção 3</TopMenuItem>
+                            {React.Children.map(children, (child, i) => {
+                                return child
+                            })}
                         </ul>
                     </div>
                 </div>
