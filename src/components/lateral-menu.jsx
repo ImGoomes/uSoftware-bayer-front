@@ -10,7 +10,7 @@ export function LateralMenuButton(props) {
         <li className={active}>
             <a aria-current="page" className={navLinkClass} href={props.href}>
                 <i className={props.icon}></i>
-                <p>{props.children}</p>
+                <p onClick={()=>{props.handleOnClick()}}>{props.children}</p>
             </a>
         </li>
     )

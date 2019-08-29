@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function RecruiterConfig(props){    
+export default function RecruiterDashboard(props){    
     const display = {}
 
     if(!props.display)
@@ -9,7 +9,7 @@ export default function RecruiterConfig(props){
 
     return(
         <div style={display}>
-            recruiter-config
+            recruiter-Dash
         </div>
     )
 }

@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { Grid, Col, Row } from 'react-bootstrap'
 
-import {getLocalStorageRole} from './../uJob-local-storage'
+import {getLocalStorageRole, removeLocalStorage, getLocalStorageName} from './../uJob-local-storage'
 import {LateralMenu, LateralMenuButton} from "../components/lateral-menu";
 import {TopMenu, TopMenuItem, TopMenuDropdown} from "../components/top-menu"
-import { Grid, Col, Row } from 'react-bootstrap'
+import RecruiterDashboard from '../components/recruiter-dashboard';
+import RecruiterVacancies from '../components/recruiter-vacancies'
+import RecruiterConfig from '../components/recruiter-config';
+
+const signOut = (props)=>{
+    props.history.push('/signin')
+    removeLocalStorage()
+}
 
 const validateCandidate = (props) => {
     if (getLocalStorageRole() !== 'recruiter')
@@ -13,37 +21,33 @@ const validateCandidate = (props) => {
 export default function MainRecruiter(props){
     validateCandidate(props)
 
+    const [dashboard, setDashboard] = useState(false)
+    const [vacancy, setVacancy] = useState(false)
+    const [config, setConfig] = useState(false)
+
     return (
         <Grid fluid={true}>
             <Row>
                 <LateralMenu siteName="u.Software">
-                    <LateralMenuButton icon="pe-7s-graph" active={false} href="admin/dashboard">
+                    <LateralMenuButton icon="pe-7s-graph" active={false} handleOnClick={()=>{setDashboard(true); setVacancy(false); setConfig(false)}}>
                         Dashboard
                     </LateralMenuButton>
-                    <LateralMenuButton icon="pe-7s-portfolio" active={false} href="admin/dashboard">
+                    <LateralMenuButton icon="pe-7s-portfolio" active={false} handleOnClick={()=>{setDashboard(false); setVacancy(true); setConfig(false)}}>
                         Vagas
                     </LateralMenuButton>
-                    <LateralMenuButton icon="pe-7s-config" active={false} href="admin/dashboard">
+                    <LateralMenuButton icon="pe-7s-config" active={false} handleOnClick={()=>{setDashboard(false); setVacancy(false); setConfig(true)}}>
                         Configurações
                     </LateralMenuButton>
-                    <LateralMenuButton icon="pe-7s-back" active={false} href="admin/logout">
+                    <LateralMenuButton icon="pe-7s-back" active={false} handleOnClick={()=>{signOut({...props})}}>
                         Sair
                     </LateralMenuButton>
                 </LateralMenu>
                 <div className="wrapper-right">
-                    <TopMenu title="Bem Vindo Recrutador!">
-                        <TopMenuDropdown title="Dropdown">
-                            <TopMenuItem href="#">Opção 4</TopMenuItem>
-                            <TopMenuItem href="#">Opção 5</TopMenuItem>
-                            <TopMenuItem href="#">Opção 6</TopMenuItem>
-                            <TopMenuItem href="#">Opção 7</TopMenuItem>
-                        </TopMenuDropdown>
-                        <TopMenuItem href="#">Opção 1</TopMenuItem>
-                        <TopMenuItem href="#">Opção 2</TopMenuItem>
-                        <TopMenuItem href="#">Opção 3</TopMenuItem>
-                    </TopMenu>
+                    <TopMenu title={`Bem-Vindo ${getLocalStorageName()}`} />
                     <div className="content">
-                        <p>teste</p>
+                        <RecruiterDashboard display={dashboard}/>
+                        <RecruiterVacancies display={vacancy}/>
+                        <RecruiterConfig display={config}/>
                     </div>
                 </div>
             </Row>

@@ -56,7 +56,7 @@ export function TopMenu(props) {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <a href="#pablo" className="navbar-brand">{props.title}</a>
+                    <a className="navbar-brand">{props.title}</a>
                     <button type="button" onClick={handleClick} className={className}>
                         <span className="sr-only">Toggle navigation</span>
                         <span className="icon-bar"></span>
