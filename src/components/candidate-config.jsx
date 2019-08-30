@@ -66,7 +66,13 @@ const loadUser = (stateChanges, props) => {
 let isFirstTime = true
 
 export default function CandidateConfig (props){
-   const userLocalstg = getLocalStorage();
+    const display = {}
+
+    if(!props.display)
+        Object.assign(display, {display: 'none'})
+
+
+    const userLocalstg = getLocalStorage();
 
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -80,6 +86,7 @@ export default function CandidateConfig (props){
     }
 
     return(
+        <div style={display}>
         <Grid>
             <Row className="justify-content-center">
                 <Col md="auto">
@@ -119,6 +126,8 @@ export default function CandidateConfig (props){
                 </Col>
             </Row>
         </Grid>
+        </div>
+
     )
 
 }

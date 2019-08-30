@@ -16,6 +16,15 @@ export function getLocalStorageRole() {
     }
 }
 
+export function getLocalStorageName() {
+    try {
+        const localStorageContent = getLocalStorageContent()
+        return localStorageContent.name
+    } catch (error) {
+        return ''
+    }
+}
+
 export function setLocalStorage(localStorageContent) {
     const formattedLocalStorageContent = JSON.stringify(localStorageContent)
     localStorage.setItem('uJobData', formattedLocalStorageContent)
