@@ -7,6 +7,8 @@ import MainCandidate from './views/MainCandidate';
 import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import 'bootstrap/dist/css/bootstrap.css';
+import CandidateConfig from './components/candidate-config';
+
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -19,6 +21,7 @@ ReactDOM.render(
             <Route path="/signup" component={SignUp} exact={true} />
             <Route path="/mainrecruiter" component={MainRecruiter} exact={true} />
             <Route path="/maincandidate" component={MainCandidate} exact={true} />
+            <Route path="/admin/candidateconfig" component={CandidateConfig} exact={true} />
         </Switch>
     </Router>, document.getElementById('root')
 );

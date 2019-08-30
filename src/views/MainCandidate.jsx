@@ -9,7 +9,7 @@ const validateCandidate = (props) => {
 }
 
 export default function MainCandidate(props) {
-    validateCandidate(props)
+    // validateCandidate(props)
 
     return (
         <LateralMenu siteName="u.Software">
@@ -19,7 +19,7 @@ export default function MainCandidate(props) {
             <LateralMenuButton icon="pe-7s-portfolio" active={false} href="admin/dashboard">
                 Vagas
             </LateralMenuButton>
-            <LateralMenuButton icon="pe-7s-config" active={false} href="admin/dashboard">
+            <LateralMenuButton icon="pe-7s-config" active={false} href="admin/candidateconfig">
                 Configurações
             </LateralMenuButton>
         </LateralMenu>

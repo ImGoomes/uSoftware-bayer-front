@@ -16,7 +16,7 @@ const signIn = async function (props) {
         setLocalStorage({...signIn.data})
         
         if (signIn.data.role === 'user')
-            props.props.history.push('/maincandidate')
+            props.props.history.push('/admin/candidateconfig')
         else
             props.props.history.push('/mainrecruiter')
 

@@ -1,6 +1,6 @@
 export default function getLocalStorageContent() {
     try {
-        const localStorageContent = localStorage.getItem('uJobDate')
+        const localStorageContent = localStorage.getItem('uJobData')
         return JSON.parse(localStorageContent)
     } catch (error) {
         return {}
@@ -10,7 +10,7 @@ export default function getLocalStorageContent() {
 export function getLocalStorageRole() {
     try {
         const localStorageContent = getLocalStorageContent()
-        return localStorageContent.role
+        return localStorageContent
     } catch (error) {
         return ''
     }
