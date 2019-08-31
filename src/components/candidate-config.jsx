@@ -87,10 +87,9 @@ export default function CandidateConfig (props){
 
     return(
         <div style={display}>
-        <Grid>
-            <Row className="justify-content-center">
+            <div className="justify-content-center">
                 <Col md="auto">
-                    <div className="box width-signup">
+                    <div className="box-dash width-signup">
                         <form className="form">
                             <h2>Informações</h2>
                             <label className="control-label">Nome</label>
@@ -124,10 +123,7 @@ export default function CandidateConfig (props){
                         </form>
                     </div>
                 </Col>
-            </Row>
-        </Grid>
+            </div>
         </div>
-
     )
-
 }

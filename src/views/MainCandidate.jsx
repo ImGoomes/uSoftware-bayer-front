@@ -46,12 +46,12 @@ export default function MainCandidate(props) {
                     </LateralMenuButton>
                 </LateralMenu>
 
+                <div className="wrapper-right">
                     <TopMenu title={`Bem-Vindo ${getLocalStorageName()}`} />
-                    <div>
-                        <CandidateResume display={curriculum}/>
-                        <CandidateVacancies display={vacancy}/>
-                        <CandidateConfig display={config}/>
-                    </div>
+                    <CandidateResume display={curriculum}/>
+                    <CandidateVacancies display={vacancy}/>
+                    <CandidateConfig display={config}/>
+                </div>
 
             </Row>
         </Grid>

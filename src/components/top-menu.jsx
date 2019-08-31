@@ -42,8 +42,6 @@ export function TopMenu(props) {
     let closeMenuMobile = "navbar-toggle collapsed";
     let openMenuMobile = "navbar-toggle collapsed in";
 
-    let estiloWrapper = {}
-
     const [classToggleNav, setClassToggleNav] = useState(closeMenuMobile)
     const children = props.children
 
@@ -60,43 +58,41 @@ export function TopMenu(props) {
     };
 
     return (
-        <div className="wrapper-right" style={estiloWrapper}>
-            <nav className="navbar navbar-default">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <a className="navbar-brand">{props.title}</a>
-                        <button type="button" onClick={handleClick} className={classToggleNav}>
-                            <span className="sr-only">Toggle navigation</span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div className="navbar-collapse collapse">
-                        <div>
-                            <ul className="nav navbar-nav">
-                                <li role="presentation" className="">
-                                    <a href="#" role="button">
-                                        <i className="fa fa-dashboard"></i>
-                                        <p className="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li role="presentation" className="">
-                                    <a href="#" role="button">
-                                        <i className="fa fa-search"></i>
-                                        <p className="hidden-lg hidden-md">Search</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul className="nav navbar-nav navbar-right">
-                                {React.Children.map(children, (child, i) => {
-                                    return child
-                                })}
-                            </ul>
-                        </div>
+        <nav className="navbar navbar-default">
+            <div className="container-fluid">
+                <div className="navbar-header">
+                    <a className="navbar-brand">{props.title}</a>
+                    <button type="button" onClick={handleClick} className={classToggleNav}>
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                    </button>
+                </div>
+                <div className="navbar-collapse collapse">
+                    <div>
+                        <ul className="nav navbar-nav">
+                            <li role="presentation" className="">
+                                <a href="#" role="button">
+                                    <i className="fa fa-dashboard"></i>
+                                    <p className="hidden-lg hidden-md">Dashboard</p>
+                                </a>
+                            </li>
+                            <li role="presentation" className="">
+                                <a href="#" role="button">
+                                    <i className="fa fa-search"></i>
+                                    <p className="hidden-lg hidden-md">Search</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right">
+                            {React.Children.map(children, (child, i) => {
+                                return child
+                            })}
+                        </ul>
                     </div>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     )
 }

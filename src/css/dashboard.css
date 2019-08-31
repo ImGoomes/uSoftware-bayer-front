@@ -20,3 +20,13 @@ html, body {
     width: calc(100% - 260px);
     transform: translate3d(-260px, 0, 0);
 }
+
+.box-dash {
+    border: 1px solid #D6D6D6 !important;
+    margin: 0px 70px 0px 70px;
+    padding: 30px 20px 30px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 10px;
+}
