@@ -10,7 +10,7 @@ export default function getLocalStorageContent() {
 export function getLocalStorageRole() {
     try {
         const localStorageContent = getLocalStorageContent()
-        return localStorageContent.role
+        return localStorageContent
     } catch (error) {
         return ''
     }

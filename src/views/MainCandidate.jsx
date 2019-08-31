@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Grid, Col, Row } from 'react-bootstrap'
-
 import './../css/dashboard.css'
-
 import {getLocalStorageRole, removeLocalStorage, getLocalStorageName} from './../uJob-local-storage'
 import { LateralMenu, LateralMenuButton } from './../components/lateral-menu'
 import { TopMenu } from './../components/top-menu'
-
 import CandidateConfig from '../components/candidate-config'
 import CandidateVacancies from '../components/candidate-vacancies'
 import CandidateResume from '../components/candidate-resume'
@@ -17,8 +14,9 @@ const signOut = (props)=>{
 }
 
 const validateCandidate = (props) => {
-    if (getLocalStorageRole() !== 'user')
-        props.history.push('/signin')
+    debugger;
+    // if (getLocalStorageRole() !== 'user')
+    //     props.history.push('/signin')
 }
 
 export default function MainCandidate(props) {
