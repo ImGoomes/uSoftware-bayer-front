@@ -17,6 +17,6 @@ html, body {
 }
 
 .width-wrapper-nav-open {
-    width: calc(100% - -260px);
+    width: calc(100% - 260px);
     transform: translate3d(-260px, 0, 0);
 }

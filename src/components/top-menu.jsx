@@ -42,7 +42,7 @@ export function TopMenu(props) {
     let closeMenuMobile = "navbar-toggle collapsed";
     let openMenuMobile = "navbar-toggle collapsed in";
 
-    let estiloWrapper = { width: '100%' }
+    let estiloWrapper = {}
 
     const [classToggleNav, setClassToggleNav] = useState(closeMenuMobile)
     const children = props.children
