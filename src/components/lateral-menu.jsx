@@ -7,7 +7,7 @@ export function LateralMenuButton(props) {
     let navLinkClass = "nav-link " + active;
 
     return(
-        <li className={active}>
+        <li className={`lateralMenuItem ${active}`}>
             <a aria-current="page" className={navLinkClass} href={props.href}>
                 <i className={props.icon}></i>
                 <p onClick={()=>{props.handleOnClick()}}>{props.children}</p>

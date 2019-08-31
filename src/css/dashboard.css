@@ -2,7 +2,6 @@ html, body {
     height: 100%;
 }
 .wrapper-right {
-    width: calc(100% - 260px);
     height: 100%;
     float: right;
     position: relative;
@@ -12,4 +11,12 @@ html, body {
 }
 .navbar {
     height: 60px;
+}
+.lateralMenuItem {
+    cursor: pointer;
+}
+
+.width-wrapper-nav-open {
+    width: calc(100% - -260px);
+    transform: translate3d(-260px, 0, 0);
 }

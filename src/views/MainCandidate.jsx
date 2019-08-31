@@ -22,37 +22,39 @@ const validateCandidate = (props) => {
 }
 
 export default function MainCandidate(props) {
-    validateCandidate(props)
+    //validateCandidate(props)
+
+
 
     const [curriculum, setCurriculum] = useState(false)
-    const [vacancy, setVacancy] = useState(false)
+    const [vacancy, setVacancy] = useState(true)
     const [config, setConfig] = useState(false)
 
     return (
         <Grid fluid={true}>
             <Row>
                 <LateralMenu siteName="u.Software">
-                    <LateralMenuButton icon="pe-7s-id" active={false} handleOnClick={()=>{setCurriculum(true); setVacancy(false); setConfig(false)}}>
-                        Currículo
-                    </LateralMenuButton>
-                    <LateralMenuButton icon="pe-7s-portfolio" active={false} handleOnClick={()=>{setCurriculum(false); setVacancy(true); setConfig(false)}}>
+                    <LateralMenuButton icon="pe-7s-portfolio" active={vacancy} handleOnClick={()=>{setCurriculum(false); setVacancy(true); setConfig(false)}}>
                         Vagas
                     </LateralMenuButton>
-                    <LateralMenuButton icon="pe-7s-config" active={false} handleOnClick={()=>{setCurriculum(false); setVacancy(false); setConfig(true)}}>
+                    <LateralMenuButton icon="pe-7s-id" active={curriculum} handleOnClick={()=>{setCurriculum(true); setVacancy(false); setConfig(false)}}>
+                        Currículo
+                    </LateralMenuButton>
+                    <LateralMenuButton icon="pe-7s-config" active={config} handleOnClick={()=>{setCurriculum(false); setVacancy(false); setConfig(true)}}>
                         Configurações
                     </LateralMenuButton>
                     <LateralMenuButton icon="pe-7s-back" active={false} handleOnClick={()=>{signOut({...props})}}>
                         Sair
                     </LateralMenuButton>
                 </LateralMenu>
-                <div className="wrapper-right">
+
                     <TopMenu title={`Bem-Vindo ${getLocalStorageName()}`} />
                     <div>
                         <CandidateResume display={curriculum}/>
                         <CandidateVacancies display={vacancy}/>
                         <CandidateConfig display={config}/>
                     </div>
-                </div>
+
             </Row>
         </Grid>
     )

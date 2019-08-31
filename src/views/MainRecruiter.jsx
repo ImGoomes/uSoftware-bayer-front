@@ -19,7 +19,7 @@ const validateCandidate = (props) => {
 }
 
 export default function MainRecruiter(props){
-    validateCandidate(props)
+    //validateCandidate(props)
 
     const [dashboard, setDashboard] = useState(false)
     const [vacancy, setVacancy] = useState(false)
