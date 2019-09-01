@@ -30,3 +30,34 @@ html, body {
     margin: 0 auto;
     margin-top: 10px;
 }
+
+.container-vacancies {
+    width: 1000px;
+    height: 500px !important;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.section {
+    background-color: #EBEBED;
+    border: 1px solid #625E5E;
+}
+
+.container-vacancies .categorias {
+    width: 200px;
+    height: 500px;
+}
+
+.container-vacancies .filtros {
+    height: 100px;
+    width: 100%;
+}
+
+.container-vacancies .painel-vagas {
+    height: 400px;
+}
+
+.container-vacancies .container-right {
+    width: 100%;
+}

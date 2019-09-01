@@ -9,7 +9,14 @@ export default function CandidateVacancies(props){
 
     return(
         <div style={display}>
-            candidate-vacancies
+            <div className="container-vacancies">
+                <aside className="categorias section">
+                </aside>
+                <div class="container-right">
+                    <section className="filtros section"></section>
+                    <section className="painel-vagas section"></section>
+                </div>
+            </div>
         </div>
     )
 }
