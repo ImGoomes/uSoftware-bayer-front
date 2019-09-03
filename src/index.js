@@ -8,6 +8,8 @@ import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap'
+import 'jquery-confirm/dist/jquery-confirm.min'
+import 'jquery-confirm/dist/jquery-confirm.min.css'
 import 'popper.js/dist/popper'
 
 import dotenv from 'dotenv'

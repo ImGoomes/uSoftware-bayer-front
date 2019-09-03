@@ -1,0 +1,37 @@
+.container-vacancies {
+    height: 500px !important;
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin: 0px 20px 0px 20px;
+}
+
+.section {
+    /*background-color: #EBEBED;
+    border: 1px solid #625E5E;*/
+    background-color: #fff;
+    border: 1px dotted #000;
+    border-radius: 10px;
+}
+
+.container-vacancies .categorias {
+    width: 200px;
+    height: 510px;
+    margin-right: 10px;
+}
+
+.container-vacancies .filtros {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container-vacancies .painel-vagas {
+    height: 400px;
+}
+
+.container-vacancies .container-right {
+    width: 100%;
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Grid, Row, Col } from 'react-bootstrap'
 
+import jQuery from 'jquery'
 import {setLocalStorage, removeLocalStorage} from './../uJob-local-storage'
 import './../css/sign-in.css'
 
@@ -11,7 +12,10 @@ const signIn = async function (props) {
         //Verificação do formulário
         checkForm(props)
         const signIn = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/signin`, { email: props.email, password: props.password })
-        alert('Credenciais corretas. Seja bem-vindo')
+        jQuery.alert({
+            title: 'Boas Vindas!',
+            content: 'Seja bem vindo ao u.Job!',
+        });
 
         setLocalStorage({...signIn.data})
         
@@ -27,29 +31,45 @@ const signIn = async function (props) {
 
         //Se não é um erro de rede | Banco de dados ou back-end
         if (error.response === undefined) {
-            alert(error.message)
+            jQuery.alert({
+                type: 'red',
+                title: 'Erro',
+                content: error.message
+            })
             return
         }
 
         //Se é um erro da banco de dados ou back-end
         switch (error.response.status) {
             case 404:
-                alert('e-mail ou senha incorretos')
+                jQuery.alert({
+                    type: 'red',
+                    title: 'Erro',
+                    content: 'e-mail ou senha incorretos!'
+                })
                 break;
             case 500:
-                alert('ocorreu um erro de resposabilidade do servidor')
+                jQuery.alert({
+                    type: 'red',
+                    title: 'Erro',
+                    content: 'ocorreu um erro de resposabilidade do servidor.'
+                })
                 break;
             default:
-                alert(error.message)
+                jQuery.alert({
+                    type: 'red',
+                    title: 'Erro',
+                    content: error.message
+                })
                 break;
         }
     }
 }
 const checkForm = (props) => {
     if (props.email === '')
-        throw new Error('Email é um campo obrigatório')
+        throw new Error('Email é um campo obrigatório!')
     else if (props.password === '')
-        throw new Error('Senha é um campo obrigatório')
+        throw new Error('Senha é um campo obrigatório!')
 
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(String(props.email).toLowerCase()))
