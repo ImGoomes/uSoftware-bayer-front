@@ -1,4 +1,4 @@
-.container{
+.container-candidate-resume{
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -13,6 +13,7 @@
     outline: none;
     transition: border .24s ease-in-out;
     width: 90% !important;
+    margin: 0 auto;
 }
 .thumbsContainer {
     display: flex;
