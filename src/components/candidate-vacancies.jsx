@@ -35,10 +35,10 @@ export default function CandidateVacancies(props){
     return(
         <div style={display}>
             <div className="container-vacancies">
-                <Aside />
-                <div class="container-right">
-                    <TopSection />
-                    <ContentSection />
+                <Aside>Categorias Vagas</Aside>
+                <div className="container-right">
+                    <TopSection>Filtros</TopSection>
+                    <ContentSection>Listagem Vagas</ContentSection>
                 </div>
             </div>
         </div>
