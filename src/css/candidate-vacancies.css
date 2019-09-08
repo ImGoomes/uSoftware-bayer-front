@@ -1,0 +1,54 @@
+.container-vacancies {
+    height: 500px !important;
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin: 0px 20px 0px 20px;
+}
+
+.section {
+    background-color: #fff;
+    border: 1px dotted #000;
+    border-radius: 10px;
+}
+
+.container-vacancies .categorias {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.container-vacancies .filtros {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container-vacancies .painel-vagas {
+    height: 400px;
+}
+
+.container-vacancies .container-right {
+    width: 100%;
+}
+
+/*          Changes for small display      */
+@media (max-width: 991px) {
+    .container-vacancies {
+        flex-direction: column;
+        width: calc(100% - 40px);
+    }
+    .container-vacancies .categorias {
+        width: 100%;
+        min-height: 100px !important;
+        margin-bottom: 10px;
+    }
+}
+
+/*          Changes for large display      */
+@media (min-width: 992px) {
+    .container-vacancies .categorias {
+        height: 510px;
+    }
+}

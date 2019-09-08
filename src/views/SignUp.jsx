@@ -21,7 +21,6 @@ const checkForm = (props) => {
         throw new Error('A senha e sua confirmação devem ser examente iguais')
 
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    console.log(props)
     if (!re.test(String(props.email).toLowerCase()))
         throw new Error('O e-mail fornecido não é válido')
 }
@@ -47,7 +46,6 @@ const signUp = async (props) => {
         //Alterando a URL sem dar o load na página
         props.props.history.push('/signin') //Alterar a URL
     } catch (error) {
-        console.log(error)
         alert(error.message)
     }
 }

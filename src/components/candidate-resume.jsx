@@ -55,7 +55,7 @@ export default function CandidateResume(props){
 
     return (
         <div style={display}>
-            <section className='container'>
+            <section className='container-candidate-resume'>
                 <div {...getRootProps({className: 'dropzone'})}>
                     <input {...getInputProps()} />
                     <p>Arraste o arquivo ou clique para seleciona-lo</p>

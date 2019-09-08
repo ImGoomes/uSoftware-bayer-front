@@ -47,7 +47,7 @@ export default function MainRecruiter(props){
                     <div className="content">
                         <RecruiterDashboard display={dashboard}/>
                         <RecruiterVacancies display={vacancy}/>
-                        <RecruiterConfig display={config}/>
+                        <RecruiterConfig history={props.history} display={config}/>
                     </div>
                 </div>
             </Row>
