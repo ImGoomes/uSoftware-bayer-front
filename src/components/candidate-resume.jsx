@@ -22,16 +22,17 @@ export default function CandidateResume(props){
         },
         onDropAccepted(files, event) {
             debugger;
-            // const toBase64 = file => new Promise((resolve, reject) => {
-            //     let reader = new FileReader();
-            //     reader.readAsDataURL(files[0]);
-            //     reader.onload = function () {
-            //         console.log(reader.result);
-            //     };
-            //     reader.onerror = function (error) {
-            //         console.log('Error: ', error);
-            //     };
-            // });
+            const toBase64 = file => new Promise((resolve, reject) => {
+                let reader = new FileReader();
+                console.log(files[0]);
+                reader.readAsDataURL(files[0]);
+                reader.onload = function () {
+                    console.log(reader.result);
+                };
+                reader.onerror = function (error) {
+                    console.log('Error: ', error);
+                };
+            });
         }
     });
 
