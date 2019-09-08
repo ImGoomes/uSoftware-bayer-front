@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React,{useState} from 'react'
 import './../css/light-bootstrap-dashboard-react.css'
 import {Col, Grid, Row} from "react-bootstrap";
 import InputMask from 'react-input-mask'
-import axios from "axios";
+import axios from "axios"
 
 import getLocalStorage from './../uJob-local-storage'
 
