@@ -50,7 +50,7 @@ export default function MainCandidate(props) {
                     <TopMenu title={`Bem-Vindo ${getLocalStorageName()}`} />
                     <CandidateResume display={curriculum}/>
                     <CandidateVacancies display={vacancy}/>
-                    <CandidateConfig display={config}/>
+                    <CandidateConfig history={props.history} display={config}/>
                 </div>
 
             </Row>

@@ -26,7 +26,6 @@ const signIn = async function (props) {
 
 
     } catch (error) {
-        console.log(error)
         removeLocalStorage()
 
         //Se não é um erro de rede | Banco de dados ou back-end

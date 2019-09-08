@@ -1,10 +1,10 @@
-import React,{useState} from 'react'
-import './../css/light-bootstrap-dashboard-react.css'
-import {Col, Grid, Row} from "react-bootstrap";
-import InputMask from 'react-input-mask'
-import axios from "axios"
+import axios from "axios";
+import React, { useState } from 'react';
+import { Col } from "react-bootstrap";
+import InputMask from 'react-input-mask';
+import './../css/light-bootstrap-dashboard-react.css';
+import getLocalStorage from './../uJob-local-storage';
 
-import getLocalStorage from './../uJob-local-storage'
 
 const checkForm = (props) => {
     if (props.name === '')
@@ -17,17 +17,17 @@ const checkForm = (props) => {
         throw new Error('Senha é um campo obrigatório')
 
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    console.log(props)
     if (!re.test(String(props.email).toLowerCase()))
         throw new Error('O e-mail fornecido não é válido')
-}
+
+    if(props.password !== props.passwordConfirmation)
+    throw new Error('Senha e confirmação de senha devem ser exatamente iguais')
+    }
 
 const updateUser = async (props) => {
     try {
         //Verificando se o formulário está preenchido corretamente
         checkForm(props)
-
-        debugger;
 
         //Chamada para o back-end
         await axios.put(`${process.env.REACT_APP_API_ADDRESS}/user`, {
@@ -41,10 +41,8 @@ const updateUser = async (props) => {
             headers: { token: props.token }
         })
 
-        //Alterando a URL sem dar o load na página
-        props.props.history.push('/signin') //Alterar a URL
+        alert('Informações atualizadas com sucesso!')
     } catch (error) {
-        console.log(error)
         alert(error.message)
     }
 }
@@ -79,6 +77,7 @@ export default function CandidateConfig (props){
     const [mobilePhone, setMobilePhone] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
     if(isFirstTime) {
         loadUser({setName, setLastName, setMobilePhone, setEmail, setPassword}, userLocalstg)
@@ -105,11 +104,15 @@ export default function CandidateConfig (props){
                             <input type="email" value={email} className="form-control mb-2" id="email" placeholder="E-mail" onChange={(e) => { setEmail(e.target.value) }}/>
 
                             <label className="control-label">Senha</label>
-                            <input type="text" value={password} className="form-control mb-2" id="password" placeholder="Senha" onChange={(e) => { setPassword(e.target.value) }}/>
+                            <input type="password" value={password} className="form-control mb-2" id="password" placeholder="Senha" onChange={(e) => { setPassword(e.target.value) }}/>
+
+                            <label className="control-label">Confirmação de senha</label>
+                            <input type="password" value={passwordConfirmation} className="form-control mb-2" id="passwordConfirmation" placeholder="Confirmação" onChange={(e) => { setPasswordConfirmation(e.target.value) }}/>
 
                             <footer>
                                 <button type="button" className="btn btn-blue btn-block" onClick={() => {
                                     updateUser({
+                                        props: props,
                                         token: userLocalstg.token,
                                         user_id: userLocalstg.user_id,
                                         name: name,
@@ -117,6 +120,7 @@ export default function CandidateConfig (props){
                                         mobilePhone: mobilePhone,
                                         email: email,
                                         password: password,
+                                        passwordConfirmation: passwordConfirmation
                                     })
                                 }}>Atualizar</button>
                             </footer>
