@@ -1,6 +1,18 @@
 import React, {useEffect,useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import '../css/candidate-resume.css'
+import jQuery from 'jquery'
+import axios from "axios";
+
+
+const uploadPdf = async function (props) {
+
+    const pdfOcr = await axios.post('http://usoftwareapi.azurewebsites.net/api/ocr/PdfToText',
+        { FileName: props.FileName, Base64: props.Base64 })
+
+    console.log(pdfOcr.data);
+
+}
 
 export default function CandidateResume(props){
     const display = {}
@@ -18,23 +30,26 @@ export default function CandidateResume(props){
             })));
         },
         onDropRejected(files, event) {
-            alert('Arquivo não permitido, tente arquivos com final .pdf')
+            jQuery.alert({
+                title: 'Ops, algo deu errado!',
+                content: 'Arquivo não permitido, tente arquivos com final .pdf!',
+            });
         },
         onDropAccepted(files, event) {
-            debugger;
-            const toBase64 = file => new Promise((resolve, reject) => {
-                let reader = new FileReader();
-                console.log(files[0]);
-                reader.readAsDataURL(files[0]);
-                reader.onload = function () {
-                    console.log(reader.result);
-                };
-                reader.onerror = function (error) {
-                    console.log('Error: ', error);
-                };
-            });
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function () {
+                const base64 = reader.result.replace(/^data:.+;base64,/, '')
+                uploadPdf({
+                    FileName: files[0].name,
+                    Base64: base64
+                })
+            }
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            }
         }
-    });
+    })
 
     const thumbs = files.map(file => (
         <div className='thumb' key={file.name}>

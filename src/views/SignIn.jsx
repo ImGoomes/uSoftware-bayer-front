@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Grid, Row, Col } from 'react-bootstrap'
-
 import jQuery from 'jquery'
 import {setLocalStorage, removeLocalStorage} from './../uJob-local-storage'
 import './../css/sign-in.css'

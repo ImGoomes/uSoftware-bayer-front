@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 import InputMask from 'react-input-mask';
 import './../css/light-bootstrap-dashboard-react.css';
 import getLocalStorage from './../uJob-local-storage';
-
+import jQuery from 'jquery'
 
 const checkForm = (props) => {
     if (props.name === '')
@@ -41,9 +41,15 @@ const updateUser = async (props) => {
             headers: { token: props.token }
         })
 
-        alert('Informações atualizadas com sucesso!')
+        jQuery.alert({
+            title: 'Sucesso!',
+            content: 'Suas informações foram autalizadas',
+        });
     } catch (error) {
-        alert(error.message)
+        jQuery.alert({
+            title: 'Ops, algo deu errado!',
+            content: error.message,
+        });
     }
 }
 
