@@ -1,9 +1,19 @@
 import React, {useState} from 'react'
 import './../css/light-bootstrap-dashboard-react.css'
+import './../css/tags.css'
 import { Col, Grid, Row } from 'react-bootstrap'
+import { WithContext as ReactTags } from 'react-tag-input'
 import axios from 'axios'
 import getLocalStorage from './../uJob-local-storage'
 import jQuery from 'jquery'
+
+/*Tags*/
+const KeyCodes = {
+    comma: 188,
+    enter: 13,
+};
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const issueValidationError = function (msg) {
     jQuery.alert({ type: 'red', title: 'Erro', content: msg })
@@ -68,6 +78,26 @@ export default function RecruiterVacancies(props){
     const [recruiter, setRecruiter] = useState('')
     const [recruiters, setRecruiters] = useState([])
     const [description, setDescription] = useState('')
+    const [tags, setTags] = useState([])
+
+    const handleTagsDelete = function (i) {
+        setTags(tags.filter((tag, index) => index !== i))
+    }
+
+    const handleTagsAddition = function(tag) {
+        setTags([...tags, tag])
+    }
+
+    const handleTagsDrag = function(tag, currPos, newPos) {
+        const newTags = tags.slice();
+
+        newTags.splice(currPos, 1)
+        newTags.splice(newPos, 0, tag)
+
+        // re-render
+        setTags(newTags)
+    }
+    /*End Tags*/
 
     if (isFirstTime) {
         getRecruiters({setRecruiters: setRecruiters})
@@ -89,6 +119,25 @@ export default function RecruiterVacancies(props){
 
                             <label className="control-label">Quantidade</label>
                             <input type="number" min="1" value={quantity} className="form-control mb-2" id="lastName" placeholder="Quantidade" onChange={(e) => { setQuantity(e.target.value) }}/>
+
+                            <div>
+                                <ReactTags tags={tags}
+                                           classNames={{
+                                               tags: 'tagsClass',
+                                               tagInput: 'tagInputClass',
+                                               tagInputField: 'form-control mb-2 tagInputField',
+                                               selected: 'selectedClass',
+                                               tag: 'tagClass',
+                                               remove: 'removeClass',
+                                               suggestions: 'suggestionsClass',
+                                               activeSuggestion: 'activeSuggestionClass'
+                                           }}
+                                           placeholder="Escreva uma skill"
+                                           handleDelete={handleTagsDelete}
+                                           handleAddition={handleTagsAddition}
+                                           handleDrag={handleTagsDrag}
+                                           delimiters={delimiters} />
+                            </div>
 
                             <label className="control-label">Recrutador</label>
                             <select className="form-control mb-2" id="recruiter" onChange={(e) => { setRecruiter(e.target.value) }} >
