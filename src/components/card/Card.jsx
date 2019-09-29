@@ -19,7 +19,7 @@ export const Card = styled.div`
     color: white;
     transition: box-shadow 0.2s ease, background 0.3s ease;
     ${props =>
-        props.static &&
+        !props.static &&
         `
     cursor: pointer;
     &:hover {
