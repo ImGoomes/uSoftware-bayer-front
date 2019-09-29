@@ -6,6 +6,7 @@ import { WithContext as ReactTags } from 'react-tag-input'
 import axios from 'axios'
 import getLocalStorage from './../uJob-local-storage'
 import jQuery from 'jquery'
+import {withRouter} from 'react-router'
 
 /*Tags*/
 const KeyCodes = {
@@ -39,19 +40,36 @@ const registerVacancy = async (props) => {
         checkForm(props)
 
         //Chamada para o back-end
-        axios.post(`${process.env.REACT_APP_API_ADDRESS}/vacancy`, {
+        const response = await axios.post(`${process.env.REACT_APP_API_ADDRESS}/vacancy`, {
             job: props.job,
-            quantity: props.quantity,
             recruiter_id: props.recruiter_id,
             description: props.description
-        }, {headers: { token: props.token }}).then(response => {
-                jQuery.alert({
-                    title: 'Informação',
-                    content: 'A vaga foi cadastrada com sucesso!'
-                })
-        })
+        }, {headers: { token: props.token }})
+
+        return response.data
     } catch (error) {
         console.log(error)
+    }
+}
+
+const registerRequirements = async (tags, vacancy_id, token) => {
+
+    try {
+        const requirements = tags.map(tag => {
+            return {
+                name: tag.text,
+                vacancy_id: vacancy_id
+            }
+        })
+
+        const response = axios.post(`${process.env.REACT_APP_API_ADDRESS}/requirement`,
+                requirements,
+                {headers: { token: token }}
+            )
+
+        return response.data
+    } catch (error) {
+        throw error
     }
 }
 
@@ -70,13 +88,10 @@ const getRecruiters = function (stateChanges) {
 
 let isFirstTime = true
 
-export default function RecruiterVacancies(props){    
+export default withRouter(function RecruiterVacancies(props){ 
     const display = {}
     const localStorage = getLocalStorage()
     const [job, setJob] = useState('')
-    const [quantity, setQuantity] = useState(0)
-    const [recruiter, setRecruiter] = useState('')
-    const [recruiters, setRecruiters] = useState([])
     const [description, setDescription] = useState('')
     const [tags, setTags] = useState([])
 
@@ -100,7 +115,6 @@ export default function RecruiterVacancies(props){
     /*End Tags*/
 
     if (isFirstTime) {
-        getRecruiters({setRecruiters: setRecruiters})
         isFirstTime = false
     }
 
@@ -117,9 +131,7 @@ export default function RecruiterVacancies(props){
                             <label className="control-label">Nome da Vaga</label>
                             <input type="text" value={job} className="form-control mb-2" id="job" placeholder="Nome da Vaga" onChange={(e) => { setJob(e.target.value)  }}/>
 
-                            <label className="control-label">Quantidade</label>
-                            <input type="number" min="1" value={quantity} className="form-control mb-2" id="lastName" placeholder="Quantidade" onChange={(e) => { setQuantity(e.target.value) }}/>
-
+                            <label className="control-label">Requisitos:</label>
                             <div>
                                 <ReactTags tags={tags}
                                            classNames={{
@@ -140,25 +152,24 @@ export default function RecruiterVacancies(props){
                             </div>
 
                             <label className="control-label">Recrutador</label>
-                            <select className="form-control mb-2" id="recruiter" onChange={(e) => { setRecruiter(e.target.value) }} >
-                                {recruiters.map((rec, i) => {
-                                    return (<option key={i} value={rec.recruiter_id}>{rec.name}</option>)
-                                })}
-                            </select>
+                            <input type="text" value={localStorage.name} enabled={false} className="form-control mb-2" id="recruiter"/>
 
                             <label className="control-label">Descrição</label>
                             <textarea className="form-control mb-2" id="description" placeholder="description" onChange={(e) => { setDescription(e.target.value) }} >{description}</textarea>
 
                             <footer>
-                                <button type="button" className="btn btn-blue btn-block" onClick={() => {
-                                    registerVacancy({
+                                <button type="button" className="btn btn-blue btn-block" onClick={async function (){
+                                    const response = await registerVacancy({
                                         token: localStorage.token,
                                         user_id: localStorage.user_id,
                                         job: job,
-                                        quantity: Number.parseInt(quantity),
-                                        recruiter_id: Number.parseInt(recruiter),
+                                        recruiter_id: localStorage.recruiter_id,
                                         description: description
                                     })
+
+                                    await registerRequirements(tags, response.vacancy.vacancy_id, localStorage.token)
+                                
+                                    window.location.reload()
                                 }}>Salvar</button>
                             </footer>
                         </form>
@@ -167,4 +178,4 @@ export default function RecruiterVacancies(props){
             </div>
         </div>
     )
-}
+})
