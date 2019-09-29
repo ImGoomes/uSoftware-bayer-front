@@ -3,23 +3,34 @@ import './../css/light-bootstrap-dashboard-react.css'
 
 export function TopMenuDropdown(props) {
     const children = props.children
-    const [className, setClassName] = useState("dropdown")
+    const [className, setClassName] = useState('dropdown')
 
     let handleClick = () => {
-        if (className === "dropdown") {
-            setClassName("dropdown open")
+        if (className === 'dropdown') {
+            setClassName('dropdown open')
         } else {
-            setClassName("dropdown")
+            setClassName('dropdown')
         }
-    };
+    }
 
     return (
         <li onClick={handleClick} className={className}>
-            <a id="basic-nav-dropdown-right" role="button" className="dropdown-toggle" aria-haspopup="true" aria-expanded={className ? true : false} href="#">
+            <a
+                id='basic-nav-dropdown-right'
+                role='button'
+                className='dropdown-toggle'
+                aria-haspopup='true'
+                aria-expanded={className ? true : false}
+                href='#'
+            >
                 {props.title}
-                <span className="caret"></span>
+                <span className='caret'></span>
             </a>
-            <ul role="menu" className="dropdown-menu" aria-labelledby="basic-nav-dropdown-right">
+            <ul
+                role='menu'
+                className='dropdown-menu'
+                aria-labelledby='basic-nav-dropdown-right'
+            >
                 {React.Children.map(children, (child, i) => {
                     return child
                 })}
@@ -30,8 +41,8 @@ export function TopMenuDropdown(props) {
 
 export function TopMenuItem(props) {
     return (
-        <li role="presentation" className={props.className}>
-            <a role="menuitem" tabIndex="-1" href={props.href}>
+        <li role='presentation' className={props.className}>
+            <a role='menuitem' tabIndex='-1' href={props.href}>
                 {props.children}
             </a>
         </li>
@@ -39,8 +50,8 @@ export function TopMenuItem(props) {
 }
 
 export function TopMenu(props) {
-    let closeMenuMobile = "navbar-toggle collapsed";
-    let openMenuMobile = "navbar-toggle collapsed in";
+    let closeMenuMobile = 'navbar-toggle collapsed'
+    let openMenuMobile = 'navbar-toggle collapsed in'
 
     const [classToggleNav, setClassToggleNav] = useState(closeMenuMobile)
     const children = props.children
@@ -48,44 +59,56 @@ export function TopMenu(props) {
     let handleClick = () => {
         if (classToggleNav === closeMenuMobile) {
             setClassToggleNav(openMenuMobile)
-            document.documentElement.classList.toggle("nav-open")
-            document.getElementsByClassName('wrapper-right')[0].classList.toggle('width-wrapper-nav-open')
+            document.documentElement.classList.toggle('nav-open')
+            document
+                .getElementsByClassName('wrapper-right')[0]
+                .classList.toggle('width-wrapper-nav-open')
         } else {
             setClassToggleNav(closeMenuMobile)
-            document.documentElement.classList.toggle("nav-open")
-            document.getElementsByClassName('wrapper-right')[0].classList.toggle('width-wrapper-nav-open')
+            document.documentElement.classList.toggle('nav-open')
+            document
+                .getElementsByClassName('wrapper-right')[0]
+                .classList.toggle('width-wrapper-nav-open')
         }
-    };
+    }
 
     return (
-        <nav className="navbar navbar-default">
-            <div className="container-fluid">
-                <div className="navbar-header">
-                    <a className="navbar-brand">{props.title}</a>
-                    <button type="button" onClick={handleClick} className={classToggleNav}>
-                        <span className="sr-only">Toggle navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
+        <nav className='navbar navbar-default'>
+            <div className='container-fluid'>
+                <div className='navbar-header'>
+                    <a className='navbar-brand'>{props.title}</a>
+                    <button
+                        type='button'
+                        onClick={handleClick}
+                        className={classToggleNav}
+                    >
+                        <span className='sr-only'>Toggle navigation</span>
+                        <span className='icon-bar'></span>
+                        <span className='icon-bar'></span>
+                        <span className='icon-bar'></span>
                     </button>
                 </div>
-                <div className="navbar-collapse collapse">
+                <div className='navbar-collapse collapse'>
                     <div>
-                        <ul className="nav navbar-nav">
-                            <li role="presentation" className="">
-                                <a href="#" role="button">
-                                    <i className="fa fa-dashboard"></i>
-                                    <p className="hidden-lg hidden-md">Dashboard</p>
+                        <ul className='nav navbar-nav'>
+                            <li role='presentation' className=''>
+                                <a href='#' role='button'>
+                                    <i className='fa fa-dashboard'></i>
+                                    <p className='hidden-lg hidden-md'>
+                                        Dashboard
+                                    </p>
                                 </a>
                             </li>
-                            <li role="presentation" className="">
-                                <a href="#" role="button">
-                                    <i className="fa fa-search"></i>
-                                    <p className="hidden-lg hidden-md">Search</p>
+                            <li role='presentation' className=''>
+                                <a href='#' role='button'>
+                                    <i className='fa fa-search'></i>
+                                    <p className='hidden-lg hidden-md'>
+                                        Search
+                                    </p>
                                 </a>
                             </li>
                         </ul>
-                        <ul className="nav navbar-nav navbar-right">
+                        <ul className='nav navbar-nav navbar-right'>
                             {React.Children.map(children, (child, i) => {
                                 return child
                             })}

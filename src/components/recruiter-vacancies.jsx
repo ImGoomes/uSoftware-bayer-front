@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './../css/light-bootstrap-dashboard-react.css'
 import './../css/tags.css'
 import { Col, Grid, Row } from 'react-bootstrap'
@@ -10,17 +10,17 @@ import jQuery from 'jquery'
 /*Tags*/
 const KeyCodes = {
     comma: 188,
-    enter: 13,
-};
+    enter: 13
+}
 
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
+const delimiters = [KeyCodes.comma, KeyCodes.enter]
 
-const issueValidationError = function (msg) {
+const issueValidationError = function(msg) {
     jQuery.alert({ type: 'red', title: 'Erro', content: msg })
     throw new Error(msg)
 }
 
-const checkForm = (props) => {
+const checkForm = props => {
     console.log(props)
     if (props.job === '')
         issueValidationError('Nome da vaga é um campo obrigatório!')
@@ -32,45 +32,52 @@ const checkForm = (props) => {
         issueValidationError('Descrição da vaga é um campo obrigatório!')
 }
 
-const registerVacancy = async (props) => {
-
+const registerVacancy = async props => {
     try {
         //Verificando se o formulário está preenchido corretamente
         checkForm(props)
 
         //Chamada para o back-end
-        axios.post(`${process.env.REACT_APP_API_ADDRESS}/vacancy`, {
-            job: props.job,
-            quantity: props.quantity,
-            recruiter_id: props.recruiter_id,
-            description: props.description
-        }, {headers: { token: props.token }}).then(response => {
+        axios
+            .post(
+                `${process.env.REACT_APP_API_ADDRESS}/vacancy`,
+                {
+                    job: props.job,
+                    quantity: props.quantity,
+                    recruiter_id: props.recruiter_id,
+                    description: props.description
+                },
+                { headers: { token: props.token } }
+            )
+            .then(response => {
                 jQuery.alert({
                     title: 'Informação',
                     content: 'A vaga foi cadastrada com sucesso!'
                 })
-        })
+            })
     } catch (error) {
         console.log(error)
     }
 }
 
-const getRecruiters = function (stateChanges) {
+const getRecruiters = function(stateChanges) {
     const localStorage = getLocalStorage()
-    axios.get(
-        `${process.env.REACT_APP_API_ADDRESS}/recruiter`,
-        { headers: {token: localStorage.token} }
-    ).then(response => {
-        if (response.data.recruiters !== undefined)
-            stateChanges.setRecruiters(response.data.recruiters)
-    }).catch(error => {
-        console.log(error)
-    })
+    axios
+        .get(`${process.env.REACT_APP_API_ADDRESS}/recruiter`, {
+            headers: { token: localStorage.token }
+        })
+        .then(response => {
+            if (response.data.recruiters !== undefined)
+                stateChanges.setRecruiters(response.data.recruiters)
+        })
+        .catch(error => {
+            console.log(error)
+        })
 }
 
 let isFirstTime = true
 
-export default function RecruiterVacancies(props){    
+export default function RecruiterVacancies(props) {
     const display = {}
     const localStorage = getLocalStorage()
     const [job, setJob] = useState('')
@@ -80,7 +87,7 @@ export default function RecruiterVacancies(props){
     const [description, setDescription] = useState('')
     const [tags, setTags] = useState([])
 
-    const handleTagsDelete = function (i) {
+    const handleTagsDelete = function(i) {
         setTags(tags.filter((tag, index) => index !== i))
     }
 
@@ -89,7 +96,7 @@ export default function RecruiterVacancies(props){
     }
 
     const handleTagsDrag = function(tag, currPos, newPos) {
-        const newTags = tags.slice();
+        const newTags = tags.slice()
 
         newTags.splice(currPos, 1)
         newTags.splice(newPos, 0, tag)
@@ -100,66 +107,120 @@ export default function RecruiterVacancies(props){
     /*End Tags*/
 
     if (isFirstTime) {
-        getRecruiters({setRecruiters: setRecruiters})
+        getRecruiters({ setRecruiters: setRecruiters })
         isFirstTime = false
     }
 
-    if(!props.display)
-        Object.assign(display, {display: 'none'})
+    if (!props.display) Object.assign(display, { display: 'none' })
 
-    return(
+    return (
         <div style={display}>
-            <div className="justify-content-center">
-                <Col md="auto">
-                    <div className="box-dash width-signup">
-                        <form className="form">
+            <div className='justify-content-center'>
+                <Col md='auto'>
+                    <div className='box-dash width-signup'>
+                        <form className='form'>
                             <h2>Criar Vaga</h2>
-                            <label className="control-label">Nome da Vaga</label>
-                            <input type="text" value={job} className="form-control mb-2" id="job" placeholder="Nome da Vaga" onChange={(e) => { setJob(e.target.value)  }}/>
+                            <label className='control-label'>
+                                Nome da Vaga
+                            </label>
+                            <input
+                                type='text'
+                                value={job}
+                                className='form-control mb-2'
+                                id='job'
+                                placeholder='Nome da Vaga'
+                                onChange={e => {
+                                    setJob(e.target.value)
+                                }}
+                            />
 
-                            <label className="control-label">Quantidade</label>
-                            <input type="number" min="1" value={quantity} className="form-control mb-2" id="lastName" placeholder="Quantidade" onChange={(e) => { setQuantity(e.target.value) }}/>
+                            <label className='control-label'>Quantidade</label>
+                            <input
+                                type='number'
+                                min='1'
+                                value={quantity}
+                                className='form-control mb-2'
+                                id='lastName'
+                                placeholder='Quantidade'
+                                onChange={e => {
+                                    setQuantity(e.target.value)
+                                }}
+                            />
 
                             <div>
-                                <ReactTags tags={tags}
-                                           classNames={{
-                                               tags: 'tagsClass',
-                                               tagInput: 'tagInputClass',
-                                               tagInputField: 'form-control mb-2 tagInputField',
-                                               selected: 'selectedClass',
-                                               tag: 'tagClass',
-                                               remove: 'removeClass',
-                                               suggestions: 'suggestionsClass',
-                                               activeSuggestion: 'activeSuggestionClass'
-                                           }}
-                                           placeholder="Escreva uma skill"
-                                           handleDelete={handleTagsDelete}
-                                           handleAddition={handleTagsAddition}
-                                           handleDrag={handleTagsDrag}
-                                           delimiters={delimiters} />
+                                <ReactTags
+                                    tags={tags}
+                                    classNames={{
+                                        tags: 'tagsClass',
+                                        tagInput: 'tagInputClass',
+                                        tagInputField:
+                                            'form-control mb-2 tagInputField',
+                                        selected: 'selectedClass',
+                                        tag: 'tagClass',
+                                        remove: 'removeClass',
+                                        suggestions: 'suggestionsClass',
+                                        activeSuggestion:
+                                            'activeSuggestionClass'
+                                    }}
+                                    placeholder='Escreva uma skill'
+                                    handleDelete={handleTagsDelete}
+                                    handleAddition={handleTagsAddition}
+                                    handleDrag={handleTagsDrag}
+                                    delimiters={delimiters}
+                                />
                             </div>
 
-                            <label className="control-label">Recrutador</label>
-                            <select className="form-control mb-2" id="recruiter" onChange={(e) => { setRecruiter(e.target.value) }} >
+                            <label className='control-label'>Recrutador</label>
+                            <select
+                                className='form-control mb-2'
+                                id='recruiter'
+                                onChange={e => {
+                                    setRecruiter(e.target.value)
+                                }}
+                            >
                                 {recruiters.map((rec, i) => {
-                                    return (<option key={i} value={rec.recruiter_id}>{rec.name}</option>)
+                                    return (
+                                        <option
+                                            key={i}
+                                            value={rec.recruiter_id}
+                                        >
+                                            {rec.name}
+                                        </option>
+                                    )
                                 })}
                             </select>
 
-                            <label className="control-label">Descrição</label>
-                            <textarea className="form-control mb-2" id="description" placeholder="description" onChange={(e) => { setDescription(e.target.value) }} >{description}</textarea>
+                            <label className='control-label'>Descrição</label>
+                            <textarea
+                                className='form-control mb-2'
+                                id='description'
+                                placeholder='description'
+                                onChange={e => {
+                                    setDescription(e.target.value)
+                                }}
+                            >
+                                {description}
+                            </textarea>
 
                             <footer>
-                                <button type="button" className="btn btn-blue btn-block" onClick={() => {
-                                    registerVacancy({
-                                        token: localStorage.token,
-                                        user_id: localStorage.user_id,
-                                        job: job,
-                                        quantity: Number.parseInt(quantity),
-                                        recruiter_id: Number.parseInt(recruiter),
-                                        description: description
-                                    })
-                                }}>Salvar</button>
+                                <button
+                                    type='button'
+                                    className='btn btn-blue btn-block'
+                                    onClick={() => {
+                                        registerVacancy({
+                                            token: localStorage.token,
+                                            user_id: localStorage.user_id,
+                                            job: job,
+                                            quantity: Number.parseInt(quantity),
+                                            recruiter_id: Number.parseInt(
+                                                recruiter
+                                            ),
+                                            description: description
+                                        })
+                                    }}
+                                >
+                                    Salvar
+                                </button>
                             </footer>
                         </form>
                     </div>
