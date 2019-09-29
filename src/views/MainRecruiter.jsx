@@ -34,7 +34,6 @@ export default function MainRecruiter(props) {
         <Grid fluid={true}>
             <Row>
                 <LateralMenu siteName='u.Software'>
-
                     <LateralMenuButton
                         icon='pe-7s-credit'
                         active={false}
