@@ -1,0 +1,19 @@
+.tagClass {
+    height: 20px;
+    background-color: #3A3A3A;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    margin: 0px 3px 0px 3px;
+    line-height: 2;
+}
+.selectedClass {
+    margin-top: 15px;
+    word-wrap: break-word;
+}
+.tagInputField {
+    margin-top: 15px;
+}
+.tagInputClass {
+    display:flex;
+}
