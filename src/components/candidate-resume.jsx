@@ -15,13 +15,13 @@ const uploadPdf = async function (props) {
 
         const userLocalstg = getLocalStorage();
 
-        console.log(userLocalstg);
+        console.log(pdfOcr);
 
         //Chamada para o back-end
         await axios.post(`${process.env.REACT_APP_API_ADDRESS}/curriculum`, {
             fileName: pdfOcr.data.fileName,
-            fileContent: 'TESTANDO TEXTO',
-            base64: 'TESTANDO BASE64',
+            fileContent: pdfOcr.data.text,
+            base64: 'pdfOcr.data.base64',
             user_id: userLocalstg.user_id
         }, {
             headers: { token: userLocalstg.token }
