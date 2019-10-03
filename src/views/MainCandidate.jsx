@@ -9,8 +9,8 @@ import {
 import { LateralMenu, LateralMenuButton } from './../components/lateral-menu'
 import { TopMenu } from './../components/top-menu'
 import CandidateConfig from '../components/candidate-config'
-import CandidateVacancies from '../components/candidate-vacancies'
 import CandidateResume from '../components/candidate-resume'
+import CandidateVacanciesSelf from './CandidateVacanciesSelf'
 
 const signOut = props => {
     props.history.push('/signin')
@@ -81,7 +81,7 @@ export default function MainCandidate(props) {
                 <div className='wrapper-right'>
                     <TopMenu title={`Bem-Vindo ${getLocalStorageName()}`} />
                     <CandidateResume display={curriculum} />
-                    <CandidateVacancies display={vacancy} />
+                    <CandidateVacanciesSelf display={vacancy} />
                     <CandidateConfig history={props.history} display={config} />
                 </div>
             </Row>
