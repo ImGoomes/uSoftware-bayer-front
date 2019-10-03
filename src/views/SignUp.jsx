@@ -5,6 +5,7 @@ import InputMask from 'react-input-mask'
 import { Grid, Row, Col } from 'react-bootstrap'
 
 import './../css/sign-up.css'
+import jQuery from "jquery";
 
 const checkForm = (props) => {
     if (props.name === '')
@@ -41,7 +42,10 @@ const signUp = async (props) => {
             passwordConfirmation: props.passwordConfirmation
         })
 
-        alert('Cadastro realizado com sucesso. Você será redirecionado para a tela de login')
+        jQuery.alert({
+            title: 'Sucesso!',
+            content: 'Cadastro realizado com sucesso. Você será redirecionado para a tela de login',
+        });
 
         //Alterando a URL sem dar o load na página
         props.props.history.push('/signin') //Alterar a URL

@@ -3,15 +3,41 @@ import {useDropzone} from 'react-dropzone'
 import '../css/candidate-resume.css'
 import jQuery from 'jquery'
 import axios from "axios";
+import getLocalStorage from "../uJob-local-storage";
 
 
 const uploadPdf = async function (props) {
+    try {
+        const pdfOcr = await axios.post('http://usoftwareapi.azurewebsites.net/api/ocr/PdfToText',
+            { FileName: props.FileName, Base64: props.Base64 })
 
-    const pdfOcr = await axios.post('http://usoftwareapi.azurewebsites.net/api/ocr/PdfToText',
-        { FileName: props.FileName, Base64: props.Base64 })
+        // console.log(pdfOcr.data);
 
-    console.log(pdfOcr.data);
+        const userLocalstg = getLocalStorage();
 
+        console.log(userLocalstg);
+
+        //Chamada para o back-end
+        await axios.post(`${process.env.REACT_APP_API_ADDRESS}/curriculum`, {
+            fileName: pdfOcr.data.fileName,
+            fileContent: 'TESTANDO TEXTO',
+            base64: 'TESTANDO BASE64',
+            user_id: userLocalstg.user_id
+        }, {
+            headers: { token: userLocalstg.token }
+        })
+
+        jQuery.alert({
+            title: 'Sucesso!',
+            content: 'Curriculo carregado com sucesso.',
+        });
+
+    } catch (error) {
+        jQuery.alert({
+            title: 'Ops, algo deu errado!',
+            content: error.message,
+        });
+    }
 }
 
 export default function CandidateResume(props){
