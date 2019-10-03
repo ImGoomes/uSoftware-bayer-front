@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './../css/candidate-vacancies.css'
 import axios from 'axios'
 import getLocalStorage from './../uJob-local-storage'
@@ -31,7 +31,7 @@ function ContentSection(props) {
 }
 
 export default function CandidateVacancies(props){
-    const [ vacancies, setVacancies ] = React.useState([])
+    const [ vacancies, setVacancies ] = useState([])
     const display = {}
 
     if(!props.display)
@@ -40,16 +40,20 @@ export default function CandidateVacancies(props){
     //mesma coisa que componentDidMount - popular state com as vagas nele
     React.useEffect(() => {
         let ls = getLocalStorage()
-        axios.get(`${process.env.REACT_APP_API_ADDRESS}/vacancies/`,{
+
+        axios.get(`${process.env.REACT_APP_API_ADDRESS}/vacancyToUser`,{
             headers: { token: ls.token}
         }).then(response=>{
-            setVacancies(response.data.vacancies)
+            console.log(response.data)
+            // setVacancies(response.data)
         })
+
     });
 
-    const cards = vacancies.map(vacancie => (
+    debugger;
+    const cards = vacancies.forEach(vacancie => (
         <Card width="47%">
-            <CardTitle>Vaga 1</CardTitle>
+            <CardTitle>vacancie.job</CardTitle>
             <CardContent>Lorem ipsum.</CardContent>
             <CardFooter>Footer</CardFooter>
         </Card>

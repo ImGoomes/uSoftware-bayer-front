@@ -11,17 +11,13 @@ const uploadPdf = async function (props) {
         const pdfOcr = await axios.post('http://usoftwareapi.azurewebsites.net/api/ocr/PdfToText',
             { FileName: props.FileName, Base64: props.Base64 })
 
-        // console.log(pdfOcr.data);
-
         const userLocalstg = getLocalStorage();
 
-        console.log(pdfOcr);
-
-        //Chamada para o back-end
+        //Chamada para o back-end. TEM UMAS GABIARRAZINHA DA CORRERIA, DAVA PARA SER MELHOR
         await axios.post(`${process.env.REACT_APP_API_ADDRESS}/curriculum`, {
             fileName: pdfOcr.data.fileName,
             fileContent: pdfOcr.data.text,
-            base64: 'pdfOcr.data.base64',
+            base64: pdfOcr.data.base64,
             user_id: userLocalstg.user_id
         }, {
             headers: { token: userLocalstg.token }
