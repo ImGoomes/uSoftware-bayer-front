@@ -83,13 +83,13 @@ export default function MainCandidate(props) {
                     <div className="content">
 
                     {/* <CandidateResume display={curriculum} /> */}
-                    {curriculum && <CandidateResume />}
+                    {curriculum && <CandidateResume display={curriculum}/>}
                     
                     {/* <CandidateVacanciesSelf display={vacancy} /> */}
-                    {vacancy && <CandidateVacanciesSelf />}
+                    {vacancy && <CandidateVacanciesSelf display={vacancy}/>}
                     
                     {/* <CandidateConfig history={props.history} display={config} /> */}
-                    {config && <CandidateConfig history={props.history}/>}
+                    {config && <CandidateConfig history={props.history} display={config}/>}
                 
                     </div>
                 

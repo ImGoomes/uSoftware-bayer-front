@@ -51,11 +51,11 @@ const CandidateVacanciesSelf = ({ display }) => {
                                 <Card
                                     key={`vacancy-${vacancy.vacancy_id}`}
                                     onClick={() => {
-                                        // setVisible(visible => !visible)
+                                        setVisible(visible => !visible)
                                         // getCandidates(vacancy.vacancy_id).then(
                                         //     r => setCandidates(r)
                                         // )
-                                        // setSelectedVacancy(vacancy)
+                                        setSelectedVacancy(vacancy)
                                     }}
                                 >
                                     <CardTitle>{vacancy.job}</CardTitle>
@@ -71,7 +71,7 @@ const CandidateVacanciesSelf = ({ display }) => {
                     )}
                 </>
             )}
-            {/* {visible && candidates && (
+            {visible && (
                 <>
                     <LinkButton
                         onClick={() => {
@@ -89,9 +89,31 @@ const CandidateVacanciesSelf = ({ display }) => {
                                 {selectedVacancy.description}
                             </CardContent>
                             <CardFooter>{selectedVacancy.name}</CardFooter>
+                            <CardActions>
+                <ActionButton
+                  backgroundColor='#5bbd5f'
+                  onClick={() => {
+                    // setHired(true)
+
+                    axios.put(
+                      buildUrl('/userVacancyHire'),
+                      {
+                        // user_vacancy_id: candidate.user_vacancy_id
+                      },
+                      {
+                        headers: {
+                          token: obj.token
+                    }
+                      }
+                    )
+                  }}
+                >
+                  Candidatar
+                </ActionButton>
+              </CardActions>
                         </Card>
                     </Flex>
-                    <Title>Candidatos</Title>
+                    {/* <Title>Candidatos</Title>
                     {!loading ? (
                         <Flex>
                             {candidates.users.map(candidate => (
@@ -100,9 +122,9 @@ const CandidateVacanciesSelf = ({ display }) => {
                         </Flex>
                     ) : (
                         <h2>Carregando...</h2>
-                    )}
+                    )} */}
                 </>
-            )} */}
+            )}
         </Container>
     )
 }
