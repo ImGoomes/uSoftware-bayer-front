@@ -3,10 +3,11 @@ import styled from 'styled-components'
 
 export const Card = styled.div`
     position: relative;
+    display: inline-block;
     user-select: none;
     border-radius: 10px;
     height: 315px;
-    width: 310px;
+    width: ${props => props.width ? props.width : '310px'};
     padding-bottom: 30px;
     padding-left: 30px;
     padding-right: 30px;

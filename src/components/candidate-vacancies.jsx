@@ -1,5 +1,8 @@
 import React from 'react'
 import './../css/candidate-vacancies.css'
+import axios from 'axios'
+import getLocalStorage from './../uJob-local-storage'
+import {Card, CardContent, CardFooter, CardTitle} from "./card/Card";
 
 function Aside(props) {
     return (
@@ -20,25 +23,46 @@ function TopSection(props) {
 function ContentSection(props) {
     return (
         <section className="painel-vagas section">
-            {props.children}
+            <span className="centro">
+                {props.children}
+            </span>
         </section>
     )
 }
 
-export default function CandidateVacancies(props){    
+export default function CandidateVacancies(props){
+    const [ vacancies, setVacancies ] = React.useState([])
     const display = {}
 
     if(!props.display)
-        Object.assign(display, {display: 'none'}) 
+        Object.assign(display, {display: 'none'})
 
+    //mesma coisa que componentDidMount - popular state com as vagas nele
+    React.useEffect(() => {
+        let ls = getLocalStorage()
+        axios.get(`${process.env.REACT_APP_API_ADDRESS}/vacancies/`,{
+            headers: { token: ls.token}
+        }).then(response=>{
+            setVacancies(response.data.vacancies)
+        })
+    });
+
+    const cards = vacancies.map(vacancie => (
+        <Card width="47%">
+            <CardTitle>Vaga 1</CardTitle>
+            <CardContent>Lorem ipsum.</CardContent>
+            <CardFooter>Footer</CardFooter>
+        </Card>
+    ))
 
     return(
         <div style={display}>
             <div className="container-vacancies">
-                <Aside>Categorias Vagas</Aside>
                 <div className="container-right">
                     <TopSection>Filtros</TopSection>
-                    <ContentSection>Listagem Vagas</ContentSection>
+                    <ContentSection>
+                        {cards}
+                    </ContentSection>
                 </div>
             </div>
         </div>
