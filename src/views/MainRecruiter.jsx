@@ -47,7 +47,7 @@ export default function MainRecruiter(props) {
                         Vagas
                     </LateralMenuButton>
                     <LateralMenuButton
-                        icon='pe-7s-portfolio'
+                        icon='pe-7s-portfolio'w
                         active={false}
                         handleOnClick={() => {
                             setDashboard(false)

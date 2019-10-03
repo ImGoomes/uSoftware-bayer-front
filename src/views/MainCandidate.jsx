@@ -27,7 +27,7 @@ export default function MainCandidate(props) {
     //validateCandidate(props)
 
     const [curriculum, setCurriculum] = useState(false)
-    const [vacancy, setVacancy] = useState(true)
+    const [vacancy, setVacancy] = useState(false)
     const [config, setConfig] = useState(false)
 
     return (
@@ -36,7 +36,7 @@ export default function MainCandidate(props) {
                 <LateralMenu siteName='u.Software'>
                     <LateralMenuButton
                         icon='pe-7s-portfolio'
-                        active={vacancy}
+                        active={false}
                         handleOnClick={() => {
                             setCurriculum(false)
                             setVacancy(true)
@@ -47,7 +47,7 @@ export default function MainCandidate(props) {
                     </LateralMenuButton>
                     <LateralMenuButton
                         icon='pe-7s-id'
-                        active={curriculum}
+                        active={false}
                         handleOnClick={() => {
                             setCurriculum(true)
                             setVacancy(false)
@@ -58,7 +58,7 @@ export default function MainCandidate(props) {
                     </LateralMenuButton>
                     <LateralMenuButton
                         icon='pe-7s-config'
-                        active={config}
+                        active={false}
                         handleOnClick={() => {
                             setCurriculum(false)
                             setVacancy(false)
@@ -80,9 +80,19 @@ export default function MainCandidate(props) {
 
                 <div className='wrapper-right'>
                     <TopMenu title={`Bem-Vindo ${getLocalStorageName()}`} />
-                    <CandidateResume display={curriculum} />
-                    <CandidateVacanciesSelf display={vacancy} />
-                    <CandidateConfig history={props.history} display={config} />
+                    <div className="content">
+
+                    {/* <CandidateResume display={curriculum} /> */}
+                    {curriculum && <CandidateResume />}
+                    
+                    {/* <CandidateVacanciesSelf display={vacancy} /> */}
+                    {vacancy && <CandidateVacanciesSelf />}
+                    
+                    {/* <CandidateConfig history={props.history} display={config} /> */}
+                    {config && <CandidateConfig history={props.history}/>}
+                
+                    </div>
+                
                 </div>
             </Row>
         </Grid>

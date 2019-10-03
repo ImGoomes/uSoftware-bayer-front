@@ -38,37 +38,34 @@ export default function CandidateVacancies(props){
         Object.assign(display, {display: 'none'})
 
     //mesma coisa que componentDidMount - popular state com as vagas nele
-    React.useEffect(() => {
+    // React.useEffect( () => {
         let ls = getLocalStorage()
 
         axios.get(`${process.env.REACT_APP_API_ADDRESS}/vacancyToUser`,{
             headers: { token: ls.token}
-        }).then(response=>{
-            console.log(response.data)
-            // setVacancies(response.data)
-        })
-
-    });
-
-    debugger;
-    const cards = vacancies.forEach(vacancie => (
-        <Card width="47%">
-            <CardTitle>vacancie.job</CardTitle>
-            <CardContent>Lorem ipsum.</CardContent>
-            <CardFooter>Footer</CardFooter>
-        </Card>
-    ))
-
-    return(
-        <div style={display}>
-            <div className="container-vacancies">
-                <div className="container-right">
-                    <TopSection>Filtros</TopSection>
-                    <ContentSection>
-                        {cards}
-                    </ContentSection>
+        }).then(vacancies => {
+            const cards = vacancies.forEach(vacancie => {
+                return (
+                    <Card width="47%">
+                    <CardTitle>"teste"</CardTitle>
+                    <CardContent>"teste"</CardContent>
+                    <CardFooter>"teste"</CardFooter>
+                </Card>
+                )
+            })
+            
+            return(
+                <div style={display}>
+                    <div className="container-vacancies">
+                        <div className="container-right">
+                            <TopSection>Filtros</TopSection>
+                            <ContentSection>
+                                {cards}
+                            </ContentSection>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    )
+            )
+    });
+// })
 }

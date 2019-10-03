@@ -23,7 +23,7 @@ const CandidateVacanciesSelf = ({ display }) => {
     const getVacancies = async () => {
         setLoading(() => true)
         const response = await axios.get(
-            buildUrl(`/vacancyToUser?user_id=${obj.user_id}`),
+            buildUrl(`/allVacancies`),
             {
                 headers: {
                     token: obj.token
@@ -51,11 +51,11 @@ const CandidateVacanciesSelf = ({ display }) => {
                                 <Card
                                     key={`vacancy-${vacancy.vacancy_id}`}
                                     onClick={() => {
-                                        setVisible(visible => !visible)
+                                        // setVisible(visible => !visible)
                                         // getCandidates(vacancy.vacancy_id).then(
                                         //     r => setCandidates(r)
                                         // )
-                                        setSelectedVacancy(vacancy)
+                                        // setSelectedVacancy(vacancy)
                                     }}
                                 >
                                     <CardTitle>{vacancy.job}</CardTitle>
@@ -71,7 +71,7 @@ const CandidateVacanciesSelf = ({ display }) => {
                     )}
                 </>
             )}
-            {visible && candidates && (
+            {/* {visible && candidates && (
                 <>
                     <LinkButton
                         onClick={() => {
@@ -102,7 +102,7 @@ const CandidateVacanciesSelf = ({ display }) => {
                         <h2>Carregando...</h2>
                     )}
                 </>
-            )}
+            )} */}
         </Container>
     )
 }
