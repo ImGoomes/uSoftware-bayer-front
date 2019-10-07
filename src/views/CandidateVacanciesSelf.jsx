@@ -95,10 +95,14 @@ const CandidateVacanciesSelf = ({ display }) => {
                   onClick={() => {
                     // setHired(true)
 
-                    axios.put(
-                      buildUrl('/userVacancyHire'),
+                    axios.post(
+                      buildUrl('/userVacancy'),
                       {
-                        // user_vacancy_id: candidate.user_vacancy_id
+                          isActive: true,
+                          approvalRate: 0,
+                          vacancy_id: selectedVacancy.vacancy_id,
+                          user_id: obj.user_id,
+                          isHired: 0
                       },
                       {
                         headers: {

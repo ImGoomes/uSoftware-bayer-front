@@ -23,12 +23,12 @@ export function LateralMenu(props) {
         <div id="sidebar" className="sidebar">
             <div className="sidebar-background"></div>
             <div className="logo">
-                <a href="https://www.creative-tim.com?ref=lbd-sidebar" className="simple-text logo-mini">
+                <a href="#" className="simple-text logo-mini">
                 <div className="logo-img">
                     {/*<img src="/light-bootstrap-dashboard-react/static/media/reactlogo.9b864b36.png" alt="Something" />*/}
                 </div>
                 </a>
-                <a href="https://www.creative-tim.com?ref=lbd-sidebar" className="simple-text logo-normal">{props.siteName}</a>
+                <a href="#" className="simple-text logo-normal">{props.siteName}</a>
             </div>
             <div className="sidebar-wrapper">
                 <ul className="nav">
