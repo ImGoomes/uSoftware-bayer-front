@@ -22,7 +22,6 @@ const issueValidationError = function(msg) {
 }
 
 const checkForm = props => {
-    console.log(props)
     if (props.job === '')
         issueValidationError('Nome da vaga é um campo obrigatório!')
     else if (props.quantity === '')

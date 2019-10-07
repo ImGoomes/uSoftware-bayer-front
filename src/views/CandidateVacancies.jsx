@@ -32,7 +32,14 @@ const CandidateVacancies = ({ display }) => {
         )
 
         setLoading(() => false)
-        return response.data
+        const alreadyRegistered = []
+        
+        return response.data.filter(data=>{
+            if(!alreadyRegistered.includes(data.vacancy_id)){
+                alreadyRegistered.push(data.vacancy_id)
+                return true
+            }else return false
+        })
     }
 
     const getCandidates = async vacancyId => {
@@ -45,7 +52,17 @@ const CandidateVacancies = ({ display }) => {
         })
 
         setLoading(() => false)
+
         return response.data
+
+        // const alreadyRegistered = []
+        
+        // return response.data.users.filter(data=>{
+        //     if(!alreadyRegistered.includes(data.user_id)){
+        //         alreadyRegistered.push(data.user_id)
+        //         return true
+        //     }else return false
+        // })
     }
 
     React.useEffect(() => {

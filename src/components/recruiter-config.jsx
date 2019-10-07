@@ -28,7 +28,6 @@ const updateUser = async (props) => {
     try {
         //Verificando se o formulário está preenchido corretamente
         checkForm(props)
-alert(JSON.stringify(props))
         //Chamada para o back-end
         await axios.put(`${process.env.REACT_APP_API_ADDRESS}/recruiter`, {
             recruiter_id: props.recruiter_id,

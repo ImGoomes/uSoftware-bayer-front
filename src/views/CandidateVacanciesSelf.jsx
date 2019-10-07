@@ -8,6 +8,7 @@ import {
     CardActions
 } from '../components/card/Card'
 import axios from 'axios'
+import jQuery from 'jquery'
 
 const buildUrl = endpoint => `${process.env.REACT_APP_API_ADDRESS}${endpoint}`
 const obj = JSON.parse(localStorage.getItem('uJobData'))
@@ -32,7 +33,6 @@ const CandidateVacanciesSelf = ({ display }) => {
         )
 
         setLoading(() => false)
-        console.log(response.data)
         return response.data
     }
 
@@ -93,7 +93,6 @@ const CandidateVacanciesSelf = ({ display }) => {
                 <ActionButton
                   backgroundColor='#5bbd5f'
                   onClick={() => {
-                    // setHired(true)
 
                     axios.post(
                       buildUrl('/userVacancy'),
@@ -110,6 +109,12 @@ const CandidateVacanciesSelf = ({ display }) => {
                     }
                       }
                     )
+
+                    jQuery.alert({
+                        title: 'Vaga',
+                        content: 'Você está concorrendo a está vaga!'
+                    })
+
                   }}
                 >
                   Candidatar
