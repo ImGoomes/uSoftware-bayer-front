@@ -8,6 +8,7 @@ import {
     CardActions
 } from '../components/card/Card'
 import axios from 'axios'
+import { relative } from 'path'
 
 const buildUrl = endpoint => `${process.env.REACT_APP_API_ADDRESS}${endpoint}`
 const obj = JSON.parse(localStorage.getItem('uJobData'))
@@ -33,13 +34,38 @@ const CandidateVacancies = ({ display }) => {
 
         setLoading(() => false)
         const alreadyRegistered = []
-        
-        return response.data.filter(data=>{
-            if(!alreadyRegistered.includes(data.vacancy_id)){
-                alreadyRegistered.push(data.vacancy_id)
-                return true
-            }else return false
+        const alreadyRegisteredId = []
+
+        response.data.forEach(element => {
+            if(!alreadyRegisteredId.includes(element.vacancy_id)){
+                let item = {...element}
+                delete item.requirement_name
+
+                alreadyRegistered.push({...item, requirement_name: [element.requirement_name]})
+                alreadyRegisteredId.push(element.vacancy_id)
+            }else{
+                // alreadyRegistered.forEach(registeredElement=>{
+                //     if(registeredElement.vacancy_id === element.vacancy_id)
+                //         registeredElement.requirement_name.push()
+                // })
+
+                const teste = alreadyRegistered.find(x => x.vacancy_id === element.vacancy_id)
+                teste.requirement_name.push(element.requirement_name)
+            }
         })
+
+        return alreadyRegistered
+        // return response.data.filter(data=>{
+        //     if(!alreadyRegistered.includes(data.vacancy_id)){
+        //         alreadyRegistered.push(data.vacancy_id)
+        //         return true
+        //     }else {
+
+        //         return false
+        //     }
+        // })
+
+        // return response.data
     }
 
     const getCandidates = async vacancyId => {
@@ -104,6 +130,7 @@ const CandidateVacancies = ({ display }) => {
                 <>
                     <LinkButton
                         onClick={() => {
+                            // alert(JSON.stringify(selectedVacancy))
                             setSelectedVacancy(undefined)
                             setVisible(false)
                         }}
@@ -123,9 +150,26 @@ const CandidateVacancies = ({ display }) => {
                     <Title>Candidatos</Title>
                     {!loading ? (
                         <Flex>
-                            {candidates.users.map(candidate => (
-                                <CandidateCard candidate={candidate} />
-                            ))}
+                            {candidates.users.map(element => {
+                                let absoluteValue = 0//selectedVacancy.requirement_name.length
+                                let relativeValue = 0
+                                // console.log(JSON.stringify(element))
+                                element.filecontent.split(' ').forEach(word => {
+                                    const wordToCompare = word.toLowerCase()
+                                    
+                                    selectedVacancy.requirement_name.forEach(tag => {
+                                        if(wordToCompare === tag.toLowerCase()){
+                                            if(absoluteValue < selectedVacancy.requirement_name.length)
+                                                absoluteValue++
+                                        }
+                                    })
+
+                                    relativeValue = (absoluteValue*100)/selectedVacancy.requirement_name.length
+                                })
+
+                                const candidate = {... element, value: relativeValue}
+                                return <CandidateCard candidate={candidate} />
+                            })}
                         </Flex>
                     ) : (
                         <h2>Carregando...</h2>
@@ -147,7 +191,9 @@ const CandidateCard = ({ candidate }) => {
             <CardContent>
                 <div>{candidate.email}</div>
                 <div>{candidate.mobilePhone}</div>
-                <div>{candidate.password}</div>
+                {/* <div>{candidate.password}</div> */}
+                <div>{candidate.value}</div>
+                {/* <div>teste</div> */}
             </CardContent>
             {!hired &&
               <CardActions>
