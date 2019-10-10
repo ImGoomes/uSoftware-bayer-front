@@ -32,7 +32,7 @@ export default function PageHeader() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Seja bem-vindo recrutador TAL-TROCAR
+                        Seja bem-vindo recrutador
                     </Typography>
                 </Toolbar>
             </AppBar>

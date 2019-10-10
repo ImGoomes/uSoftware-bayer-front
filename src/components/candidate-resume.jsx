@@ -16,8 +16,8 @@ const uploadPdf = async function (props) {
         //Chamada para o back-end. TEM UMAS GABIARRAZINHA DA CORRERIA, DAVA PARA SER MELHOR
         await axios.post(`${process.env.REACT_APP_API_ADDRESS}/curriculum`, {
             fileName: pdfOcr.data.fileName,
-            fileContent: pdfOcr.data.text,
-            base64: pdfOcr.data.base64,
+            fileContent: pdfOcr.data.text.replace("'",""),
+            base64: 'Sem base 64',
             user_id: userLocalstg.user_id
         }, {
             headers: { token: userLocalstg.token }

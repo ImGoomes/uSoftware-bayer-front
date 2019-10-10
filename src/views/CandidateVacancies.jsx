@@ -192,33 +192,35 @@ const CandidateCard = ({ candidate }) => {
                 <div>{candidate.email}</div>
                 <div>{candidate.mobilePhone}</div>
                 {/* <div>{candidate.password}</div> */}
-                <div>{candidate.value}</div>
                 {/* <div>teste</div> */}
             </CardContent>
             {!hired &&
-              <CardActions>
+            <CardActions>
                 <ActionButton
-                  backgroundColor='#5bbd5f'
-                  onClick={() => {
-                    setHired(true)
+                    backgroundColor='#5bbd5f'
+                    onClick={() => {
+                        setHired(true)
 
-                    axios.put(
-                      buildUrl('/userVacancyHire'),
-                      {
-                        user_vacancy_id: candidate.user_vacancy_id
-                      },
-                      {
-                        headers: {
-                          token: obj.token
-                        }
-                      }
-                    )
-                  }}
+                        axios.put(
+                            buildUrl('/userVacancyHire'),
+                            {
+                                user_vacancy_id: candidate.user_vacancy_id
+                            },
+                            {
+                                headers: {
+                                    token: obj.token
+                                }
+                            }
+                        )
+                    }}
                 >
-                  Contratar
+                    Contratar
                 </ActionButton>
-              </CardActions>
+            </CardActions>
             }
+            <CardFooter>
+                <h2 align="left">{+candidate.value.toFixed(1) + '%'}</h2>
+            </CardFooter>
         </Card>
     )
 }
