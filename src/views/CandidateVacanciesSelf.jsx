@@ -14,6 +14,8 @@ const buildUrl = endpoint => `${process.env.REACT_APP_API_ADDRESS}${endpoint}`
 const obj = JSON.parse(localStorage.getItem('uJobData'))
 
 const CandidateVacanciesSelf = ({ display }) => {
+    const obj = JSON.parse(localStorage.getItem('uJobData'))
+
     const [vacancies, setVacancies] = React.useState(undefined)
     const [candidates, setCandidates] = React.useState(undefined)
     const [selectedVacancy, setSelectedVacancy] = React.useState(undefined)
